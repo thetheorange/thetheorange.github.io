@@ -54,15 +54,12 @@ let no_repeat_flag = true;
 let speed_flag = false;
 // 记录连击
 let combo = 0;
-// 记录游戏是否失败
-let fail_flag = false;
 
 // 监听键盘输入
 function handle_key(event){
     if(no_repeat_flag 
         && Object.keys(key_events).includes(event.key)
-        && dir !== dir_op[event.key]
-        && fail_flag !== false){
+        && dir !== dir_op[event.key]){
             event.key == "Shift" ? speed_flag = true: dir = key_events[event.key];no_repeat_flag = false;
         } 
 }
@@ -116,7 +113,6 @@ function check_fail(x, y){
     if(x < 0 || x > 490
         || y < 0 || y > 290){
             show_fail_msg();
-            fail_flag = true;
             return;
         }
     // 2 检查snake是否碰到自己的body(判断蛇头是否与除蛇尾以外的div坐标重叠)
@@ -124,7 +120,6 @@ function check_fail(x, y){
         if(x == snake_body[i].offsetLeft
             && y == snake_body[i].offsetTop){
                 show_fail_msg();
-                fail_flag = true;
                 return;
             }
     }
