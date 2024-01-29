@@ -1,0 +1,253 @@
+/* #region基础设置start */
+/* 抖动动画 */
+@keyframes shake {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(-5px, 0) rotate(-1deg);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translate(5px, 0) rotate(-1deg);
+    }
+    75% {
+      transform: translate(-5px, 0);
+    }
+}
+/* 完美进食动画 */
+@keyframes eat {
+    0%, 100% {
+        background-color: skyblue;
+        opacity: 1;
+    }
+    50% {
+        background-color: #0E2A78;
+        opacity: 0.5;
+    }
+    75% {
+        opacity: 0.8;
+    }
+}
+/* 连击动画 */
+@keyframes combo {
+    0%, 100% {
+        color: white;
+        transform: translateX(-50%) rotate(-45deg);
+    }
+    50% {
+        transform: translateX(-50%) rotate(-45deg) scale(1.2);
+        opacity: 0.8;
+    }
+    75% {color: white;
+        font-weight: bold;
+        transform: translateX(-50%) rotate(-45deg);
+    }
+}
+/* 多次连击后动画 */
+@keyframes prefect_combo {
+    0%, 100% {
+        color: orange;
+        transform: translateX(-50%) rotate(-45deg);
+    }
+    50% {
+        transform: translateX(-50%) rotate(-45deg) scale(2);
+        opacity: 0.8;
+    }
+    75% {color: #E6B441;
+        font-weight: bold;
+        transform: translateX(-50%) rotate(-45deg);
+    }
+}
+.prefect-combo {
+    animation: prefect_combo 800ms ease-in-out;
+}
+.combo {
+    animation: combo 800ms cubic-bezier(0.555, 1.600, 0.370, 0.915);
+}
+.eat {
+    animation: eat 800ms ease-in-out;
+}
+.shake {
+    animation: shake 800ms ease-in-out;
+}
+.container {
+    width: 500px;
+    margin: 0 auto;
+    margin-top: calc(50vh - 250px);
+    padding: 10px;
+    border: 5px solid black;
+    border-radius: 10px;
+    background-color: #9ab782;
+    font-size: 0;
+    transition: 0.2s linear all;
+    box-shadow: 0 0 10px gray;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 500px;
+    transform: rotate(-3deg) rotateY(30deg);
+}
+.container:hover{
+    transform: rotate(0deg);
+}
+body {
+    background-color: skyblue;
+}
+/* #endregion基础设置end */
+
+/* #region游戏消息区start */
+
+.game .game-msg {
+    height: 40px;
+    margin-bottom: 10px;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: #1A1A1A;
+    display: flex;
+    font-size: 30px;
+    color: white;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+}
+.game .game-msg span:nth-child(1)::before {
+    content: "SCORE ";
+}
+.game .game-msg span:nth-child(2)::before {
+    content: "LEVEL ";
+}
+
+/* #endregion游戏消息区end */
+
+/* #region游戏内容区start */
+
+.game .game-content {
+    width: 500px; 
+    height: 300px;
+    border: 2px solid black;
+    margin-bottom: 10px;
+    background-color: #E6B441;
+    position: relative;
+    overflow: hidden;
+}
+#snake>div {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #E6B441;
+    background-color: #C75031;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+#food {
+    width: 10px;
+    height: 10px;
+    border: 1px solid black;
+    background-color: white;
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 2;
+    left: 50px;
+    top: 50px;
+}
+
+/* #endregion游戏内容区end */
+
+/* #region游戏控制区start */
+
+.game .game-control {
+    height: 140px;
+    border: 2px solid black;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+}
+.direction-control {
+    width: 300px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.direction-control svg{
+    width: 70px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: black;
+    box-sizing: border-box;
+    transition: 0.2s linear all;
+}
+.direction-control svg:hover {
+    box-shadow: 0 0 10px gray;
+    border: 2px solid white;
+    cursor: pointer;
+}
+.direction-control svg:active {
+    background-color: white;
+}
+.speed-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.speed-control svg{
+    width: 80px;
+    height: 80px;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: #C75031;
+    box-sizing: border-box;
+    transition: 0.2s cubic-bezier(0.555, 1.600, 0.370, 0.915) all;
+}
+.speed-control svg:hover {
+    box-shadow: 0 0 10px gray;
+    border: 2px solid white;
+    cursor: pointer;
+}
+.speed-control svg:active {
+    background-color: white;
+    transform: scale(1.2);
+}
+/* #endregion游戏控制区end */
+
+/* #region暂停mask start */
+
+.mask {
+    width: 504px;
+    height: 304px;
+    background-color: gray;
+    opacity: 0.5;
+    font-size: 30px;
+    text-align: center;
+    line-height: 300px;
+    color: black;
+    position: absolute;
+    z-index: 5;
+    top: 60px;
+    display: none;
+}
+.container:not(:hover) .mask{
+    display: block;
+}
+/* #endregion暂停mask end */
+
+/* #region连击显示 start */
+.combo-msg {
+    width: 250px;
+    height: 50px;
+    opacity: 0.5;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    color: #681804;
+    position: absolute;
+    transform:translateX(-50%) rotate(-45deg);
+    top: 0;
+    left: 0;
+    display: none;
+}
+.combo-msg::before{
+    content: "COMBO \2716";
+}
+/* #endregion连击显示end */
