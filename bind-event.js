@@ -4,28 +4,32 @@
 // 须一一绑定，通过事件的冒泡绑定，会出现部分按键失灵
 up.addEventListener("click", ()=>{
     if(dir !== dir_op.w &&
-        no_repeat_flag){
+        no_repeat_flag
+        && fail_flag !== false){
         dir = "up";
         no_repeat_flag = false;
     }
 })
 left.addEventListener("click", ()=>{
     if(dir !== dir_op.a &&
-        no_repeat_flag){
+        no_repeat_flag
+        && fail_flag !== false){
         dir = "left";
         no_repeat_flag = false;
     }
 })
 down.addEventListener("click", ()=>{
     if(dir !== dir_op.s &&
-        no_repeat_flag){
+        no_repeat_flag
+        && fail_flag !== false){
         dir = "down";
         no_repeat_flag = false;
     }
 })
 right.addEventListener("click", ()=>{
     if(dir !== dir_op.d &&
-        no_repeat_flag){
+        no_repeat_flag
+        && fail_flag !== false){
         dir = "right";
         no_repeat_flag = false;
     }
