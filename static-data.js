@@ -107,20 +107,3 @@ function muti_combo(elem){
         elem.classList.remove("prefect-combo");
     }, 800)
 }    
-// 检查失败条件
-function check_fail(x, y){
-    // 1 检查snake是否撞墙
-    if(x < 0 || x > 490
-        || y < 0 || y > 290){
-            show_fail_msg();
-            return;
-        }
-    // 2 检查snake是否碰到自己的body(判断蛇头是否与除蛇尾以外的div坐标重叠)
-    for(let i = 1; i < snake_body.length-1; ++i){
-        if(x == snake_body[i].offsetLeft
-            && y == snake_body[i].offsetTop){
-                show_fail_msg();
-                return;
-            }
-    }
-}

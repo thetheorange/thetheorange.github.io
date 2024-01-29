@@ -9,8 +9,24 @@ setTimeout(function snake_move(){
     let y = snake_head.offsetTop;
     // 标记snake的头
     snake_head.style.backgroundColor = "black";
-    // 检测失败条件
-    check_fail(x, y);
+
+    // 检查失败条件
+    // 1 检查snake是否撞墙
+    if(x < 0 || x > 490
+        || y < 0 || y > 290){
+            show_fail_msg();
+            return;
+        }
+    // 2 检查snake是否碰到自己的body(判断蛇头是否与除蛇尾以外的div坐标重叠)
+    for(let i = 1; i < snake_body.length-1; ++i){
+        if(x == snake_body[i].offsetLeft
+            && y == snake_body[i].offsetTop){
+                show_fail_msg();
+                return;
+            }
+    }
+
+
     // 检测关卡难度
     if(level < 22){
         level = Math.floor(score/10);
