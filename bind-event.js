@@ -36,6 +36,13 @@ enter.addEventListener("mousedown", ()=>{
 enter.addEventListener("mouseup", ()=>{
     speed_flag = false;
 })
+// 适配手机
+enter.addEventListener("touchstart", ()=>{
+    speed_flag = true;
+})
+enter.addEventListener("touchend", ()=>{
+    speed_flag = false;
+})
 // 为游戏机绑定鼠标移开事件，呈现暂停效果
 game.addEventListener("mouseleave", ()=>{
     dir = "pause";
