@@ -57,3 +57,7 @@ game.addEventListener("mouseenter", ()=>{
 document.addEventListener("keyup", (event)=>{
     speed_flag = false;
 })
+// 使安卓端长按呼出菜单失效
+document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+ }); 
