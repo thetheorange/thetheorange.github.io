@@ -83,7 +83,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -146,9 +146,14 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
@@ -169,6 +174,117 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/09/30/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="thetheOrange">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/09/30/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">排序算法总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-09-30 10:54:17 / 修改时间：11:20:35" itemprop="dateCreated datePublished" datetime="2024-09-30T10:54:17+08:00">2024-09-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>10 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="辅助函数"><a href="#辅助函数" class="headerlink" title="辅助函数"></a>辅助函数</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 交换函数</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> tmp = nums[x];</span><br><span class="line">	nums[x] = nums[y];</span><br><span class="line">	nums[y] = tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试函数</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">test</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> i : nums) cout &lt;&lt; i &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">选择排序</span></span><br><span class="line"><span class="comment">在每一轮找到最小的值插入到数组前面</span></span><br><span class="line"><span class="comment">时间复杂度 O(n^2)</span></span><br><span class="line"><span class="comment">空间复杂度 O(1)</span></span><br><span class="line"><span class="comment">稳定性 无</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">selectionSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">		<span class="type">int</span> min_el = INT_MAX, min_index = <span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = i; j &lt; n; ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (nums[j] &lt; min_el) &#123;</span><br><span class="line">				min_el = nums[j];</span><br><span class="line">				min_index = j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">swap</span>(nums, i, min_index);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">冒泡排序</span></span><br><span class="line"><span class="comment">两两比较大小 大的数字往后移</span></span><br><span class="line"><span class="comment">时间复杂度 O(n^2)</span></span><br><span class="line"><span class="comment">空间复杂度 O(1)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">bubbleSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; ++i)</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n - i; ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (j + <span class="number">1</span> &lt; n &amp;&amp; nums[j] &gt; nums[j + <span class="number">1</span>]) <span class="built_in">swap</span>(nums, j, j + <span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">直接插入排序</span></span><br><span class="line"><span class="comment">依次选择最小的值插入到数组前面</span></span><br><span class="line"><span class="comment">时间复杂度 O(n^2)</span></span><br><span class="line"><span class="comment">空间复杂度 O(1)</span></span><br><span class="line"><span class="comment">稳定性 有</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insertSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; ++i)</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span> &amp;&amp; nums[j + <span class="number">1</span>] &lt; nums[j]; --j)</span><br><span class="line">			<span class="built_in">swap</span>(nums, j + <span class="number">1</span>, j);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="二分插入排序"><a href="#二分插入排序" class="headerlink" title="二分插入排序"></a>二分插入排序</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">二分插入排序</span></span><br><span class="line"><span class="comment">根据前面数组的有序性 二分查找最小的值插入到数组前面</span></span><br><span class="line"><span class="comment">时间复杂度 O(n^2)</span></span><br><span class="line"><span class="comment">空间复杂度 O(1)</span></span><br><span class="line"><span class="comment">稳定性 有</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lower_bound</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> start, <span class="type">int</span> end, <span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> l = start, r = end;</span><br><span class="line">	<span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">		<span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span> (x &gt; nums[mid]) l = mid + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> r = mid - <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insertSort_2</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">if</span> (n &lt;= <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">	<span class="comment">// 前2个元素按从小到大排序</span></span><br><span class="line">	<span class="keyword">if</span> (nums[<span class="number">1</span>] &lt; nums[<span class="number">0</span>]) <span class="built_in">swap</span>(nums, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; n; ++i) &#123;</span><br><span class="line">		<span class="type">int</span> pos = <span class="built_in">lower_bound</span>(nums, <span class="number">0</span>, i - <span class="number">1</span>, nums[i] + <span class="number">1</span>);</span><br><span class="line">		pos = pos == n ? n - <span class="number">1</span> : pos;</span><br><span class="line">		<span class="type">int</span> x = nums[i];</span><br><span class="line">		<span class="comment">// 插入元素</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = i - <span class="number">1</span>; j &gt;= pos; --j) &#123;</span><br><span class="line">			<span class="built_in">swap</span>(nums, j, j + <span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">希尔排序</span></span><br><span class="line"><span class="comment">对子表进行插入排序</span></span><br><span class="line"><span class="comment">时间复杂度(n^2)</span></span><br><span class="line"><span class="comment">空间复杂度O(1)</span></span><br><span class="line"><span class="comment">稳定性 无</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">shellSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> d)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">while</span> (d &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="comment">// 以下为插入排序的流程 不过步长改为了d</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = d; i &lt; n; ++i) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> j = i - d; j &gt;= <span class="number">0</span> &amp;&amp; nums[j + d] &lt; nums[j]; j -= d) &#123;</span><br><span class="line">				<span class="built_in">swap</span>(nums, j + d, j);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		d /= <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">快速排序</span></span><br><span class="line"><span class="comment">时间复杂度 O(n logn)</span></span><br><span class="line"><span class="comment">空间复杂度 O(logn)</span></span><br><span class="line"><span class="comment">稳定性 无</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 快速排序 第一种写法</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">quickSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> start, <span class="type">int</span> end)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (start &gt;= end) <span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> left = start, right = end, pivot = nums[start];</span><br><span class="line">	<span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">		<span class="comment">// 移动右指针 直到遇到小于pivot的元素</span></span><br><span class="line">		<span class="keyword">for</span> (; left &lt; right &amp;&amp; nums[right] &gt;= pivot; )  --right;</span><br><span class="line">		<span class="comment">// 处理比pivot小的元素</span></span><br><span class="line">		nums[left] = nums[right];</span><br><span class="line">		<span class="comment">// 移动左指针 直到遇到大于pivot的元素</span></span><br><span class="line">		<span class="keyword">for</span> (; left &lt; right &amp;&amp; nums[left] &lt;= pivot; ) ++left;</span><br><span class="line">		<span class="comment">// 处理比pivot大的元素</span></span><br><span class="line">		nums[right] = nums[left];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 归位pivot</span></span><br><span class="line">	nums[left] = pivot;</span><br><span class="line">	<span class="built_in">quickSort</span>(nums, start, left - <span class="number">1</span>);</span><br><span class="line">	<span class="built_in">quickSort</span>(nums, left + <span class="number">1</span>, end);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 快速排序 第二种写法</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">quickSort2</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (l &gt;= r) <span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> pivot = nums[l], slow = l;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = l; i &lt;= r; ++i) &#123;</span><br><span class="line">		<span class="keyword">if</span> (nums[i] &lt;= pivot) &#123;</span><br><span class="line">			<span class="built_in">swap</span>(nums, i, slow);</span><br><span class="line">			++slow;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">swap</span>(nums, slow - <span class="number">1</span>, l);</span><br><span class="line">	<span class="built_in">quickSort2</span>(nums, l, slow - <span class="number">2</span>);</span><br><span class="line">	<span class="built_in">quickSort2</span>(nums, slow, r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">堆排序</span></span><br><span class="line"><span class="comment">时间复杂度 O(n logn)</span></span><br><span class="line"><span class="comment">空间复杂度 O(1)</span></span><br><span class="line"><span class="comment">稳定性 无</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 向上调整</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">heapInsert</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; heap, <span class="type">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (i &gt;= <span class="number">1</span> &amp;&amp; heap[i] &gt; heap[(i - <span class="number">1</span>) / <span class="number">2</span>]) &#123;</span><br><span class="line">		<span class="built_in">swap</span>(heap, i, (i - <span class="number">1</span>) / <span class="number">2</span>);</span><br><span class="line">		i = (i - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 向下调整</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">heapify</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; heap, <span class="type">int</span> i, <span class="type">int</span> size)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> l = <span class="number">2</span> * i + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (l &lt; size) &#123;</span><br><span class="line">		<span class="comment">// 从左右孩子中选出最大的孩子</span></span><br><span class="line">		<span class="type">int</span> mx = l + <span class="number">1</span> &lt; size &amp;&amp; heap[l] &lt; heap[l + <span class="number">1</span>] ? l + <span class="number">1</span> : l;</span><br><span class="line">		<span class="comment">// 比较最大的孩子与当前元素</span></span><br><span class="line">		<span class="keyword">if</span> (heap[i] &gt;= heap[mx]) <span class="keyword">break</span>;</span><br><span class="line">		<span class="comment">// 如果当前元素比最大的孩子小 则向最大的孩子移动</span></span><br><span class="line">		<span class="built_in">swap</span>(heap, i, mx);</span><br><span class="line">		<span class="comment">// 更新 i, l</span></span><br><span class="line">		i = mx;</span><br><span class="line">		l = <span class="number">2</span> * i + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建堆 自下而上</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">build_bottom</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; ns)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> n = ns.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">		<span class="built_in">heapify</span>(ns, i, n);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建堆 自上而下</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">build_top</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; ns)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> n = ns.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">		<span class="built_in">heapInsert</span>(ns, i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">heapSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">void</span>(*build)(vector&lt;<span class="type">int</span>&gt;&amp; ns))</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> n = nums.<span class="built_in">size</span>(), last = n;</span><br><span class="line">	<span class="comment">// 建堆 </span></span><br><span class="line">	<span class="built_in">build</span>(nums);</span><br><span class="line">	<span class="comment">// 大数归位</span></span><br><span class="line">	<span class="keyword">while</span> (last &gt; <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="built_in">swap</span>(nums, <span class="number">0</span>, last - <span class="number">1</span>);</span><br><span class="line">		--last;</span><br><span class="line">		<span class="built_in">heapify</span>(nums, <span class="number">0</span>, last);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">归并排序</span></span><br><span class="line"><span class="comment">递归将数组分成两部分 分别将这两部分排序好 再合并 最后将辅助数组里面的值刷回原数组</span></span><br><span class="line"><span class="comment">时间复杂度 O(n)</span></span><br><span class="line"><span class="comment">空间复杂度 O(n)</span></span><br><span class="line"><span class="comment">稳定性 有</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> l, <span class="type">int</span> mid, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">	<span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">help</span><span class="params">((<span class="type">int</span>)nums.size(), <span class="number">0</span>)</span></span>; <span class="comment">// 辅助数组</span></span><br><span class="line">	<span class="type">int</span> i = l, a = l, b = mid + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (a &lt;= mid &amp;&amp; b &lt;= r) &#123;</span><br><span class="line">		help[i++] = nums[a] &lt;= nums[b] ? nums[a++] : nums[b++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 必有一个指针越界 要么是a 要么是b</span></span><br><span class="line">	<span class="keyword">while</span> (a &lt;= mid) &#123;</span><br><span class="line">		help[i++] = nums[a++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (b &lt;= r) &#123;</span><br><span class="line">		help[i++] = nums[b++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 将辅助数组中的数据刷回原数组</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> j = l; j &lt;= r; ++j) &#123;</span><br><span class="line">		nums[j] = help[j];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">mergeSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (l == r) <span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">	<span class="built_in">mergeSort</span>(nums, l, mid);</span><br><span class="line">	<span class="built_in">mergeSort</span>(nums, mid + <span class="number">1</span>, r);</span><br><span class="line">	<span class="built_in">merge</span>(nums, l, mid, r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="桶排序（基数排序）"><a href="#桶排序（基数排序）" class="headerlink" title="桶排序（基数排序）"></a>桶排序（基数排序）</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">桶排序 (基数排序)</span></span><br><span class="line"><span class="comment">时间复杂度 O(n)</span></span><br><span class="line"><span class="comment">空间复杂度 O(n + k) k为桶的数量</span></span><br><span class="line"><span class="comment">稳定性 有</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 十进制</span></span><br><span class="line"><span class="type">int</span> BASE = <span class="number">10</span>;</span><br><span class="line"><span class="comment">// 计数位数</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">countDigit</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> cnt = <span class="number">0</span>, offset = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (x &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		x /= offset;</span><br><span class="line">		offset *= BASE;</span><br><span class="line">		++cnt;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">radixSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> min_el = INT_MAX, max_el = INT_MIN, n = nums.<span class="built_in">size</span>();</span><br><span class="line">	<span class="comment">// 获取最小值和最大值</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> i : nums) &#123;</span><br><span class="line">		min_el = <span class="built_in">min</span>(min_el, i);</span><br><span class="line">		max_el = <span class="built_in">max</span>(max_el, i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// bits：nums中最大值的位数</span></span><br><span class="line">	<span class="type">int</span> bits = <span class="built_in">countDigit</span>(max_el);</span><br><span class="line">	<span class="comment">// 将nums中的所有值减去最小值</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) nums[i] -= min_el;</span><br><span class="line">	<span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">help</span><span class="params">(n, <span class="number">0</span>)</span></span>;</span><br><span class="line">	<span class="comment">// 桶排序</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> offset = <span class="number">1</span>, i = <span class="number">0</span>; i &lt; bits; ++i, offset *= BASE) &#123;</span><br><span class="line">		<span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnts</span><span class="params">(BASE, <span class="number">0</span>)</span></span>;</span><br><span class="line">		<span class="comment">// 统计各个位数的次数</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> num : nums) cnts[(num / offset) % BASE]++;</span><br><span class="line">		<span class="comment">// 计算前缀位数次序和</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; BASE; ++j) cnts[j] += cnts[j - <span class="number">1</span>];</span><br><span class="line">		<span class="comment">// 倒序遍历nums 插入对应位置的元素到help中</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = n - <span class="number">1</span>; j &gt;= <span class="number">0</span>; --j) &#123;</span><br><span class="line">			help[--cnts[(nums[j] / offset) % BASE]] = nums[j];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 将help数组中的值刷入nums中</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; ++j) nums[j] = help[j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 还原数组</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) nums[i] += min_el;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -214,7 +330,16 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-30 09:12:02" itemprop="dateModified" datetime="2024-09-30T09:12:02+08:00">2024-09-30</time>
+      <time title="修改时间：2024-09-30 11:20:39" itemprop="dateModified" datetime="2024-09-30T11:20:39+08:00">2024-09-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BA%8C%E5%8F%89%E6%A0%91/" itemprop="url" rel="index"><span itemprop="name">二叉树</span></a>
+        </span>
     </span>
 
   
@@ -393,9 +518,24 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-09-26 14:04:27 / 修改时间：14:36:36" itemprop="dateCreated datePublished" datetime="2024-09-26T14:04:27+08:00">2024-09-26</time>
+      <time title="创建时间：2024-09-26 14:04:27" itemprop="dateCreated datePublished" datetime="2024-09-26T14:04:27+08:00">2024-09-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-30 11:20:47" itemprop="dateModified" datetime="2024-09-30T11:20:47+08:00">2024-09-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
+        </span>
     </span>
 
   
@@ -502,7 +642,16 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-30 08:36:54" itemprop="dateModified" datetime="2024-09-30T08:36:54+08:00">2024-09-30</time>
+      <time title="修改时间：2024-09-30 11:20:57" itemprop="dateModified" datetime="2024-09-30T11:20:57+08:00">2024-09-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
+        </span>
     </span>
 
   
@@ -628,9 +777,24 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-09-23 15:20:32 / 修改时间：16:01:21" itemprop="dateCreated datePublished" datetime="2024-09-23T15:20:32+08:00">2024-09-23</time>
+      <time title="创建时间：2024-09-23 15:20:32" itemprop="dateCreated datePublished" datetime="2024-09-23T15:20:32+08:00">2024-09-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-30 11:20:28" itemprop="dateModified" datetime="2024-09-30T11:20:28+08:00">2024-09-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+        </span>
     </span>
 
   
@@ -748,7 +912,16 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-30 09:01:19" itemprop="dateModified" datetime="2024-09-30T09:01:19+08:00">2024-09-30</time>
+      <time title="修改时间：2024-09-30 11:20:43" itemprop="dateModified" datetime="2024-09-30T11:20:43+08:00">2024-09-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
+        </span>
     </span>
 
   
@@ -872,9 +1045,24 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-09-14 08:42:34 / 修改时间：09:39:52" itemprop="dateCreated datePublished" datetime="2024-09-14T08:42:34+08:00">2024-09-14</time>
+      <time title="创建时间：2024-09-14 08:42:34" itemprop="dateCreated datePublished" datetime="2024-09-14T08:42:34+08:00">2024-09-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-30 11:20:51" itemprop="dateModified" datetime="2024-09-30T11:20:51+08:00">2024-09-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+        </span>
     </span>
 
   
@@ -1007,9 +1195,24 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-09-11 17:39:42 / 修改时间：22:06:10" itemprop="dateCreated datePublished" datetime="2024-09-11T17:39:42+08:00">2024-09-11</time>
+      <time title="创建时间：2024-09-11 17:39:42" itemprop="dateCreated datePublished" datetime="2024-09-11T17:39:42+08:00">2024-09-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-30 11:20:31" itemprop="dateModified" datetime="2024-09-30T11:20:31+08:00">2024-09-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+        </span>
     </span>
 
   
@@ -1116,7 +1319,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/09/10/standard/">
+    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/09/10/git%20commit%E7%9A%84%E6%A0%87%E5%87%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1134,7 +1337,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/09/10/standard/" class="post-title-link" itemprop="url">git commit message 标准</a>
+          <a href="/2024/09/10/git%20commit%E7%9A%84%E6%A0%87%E5%87%86/" class="post-title-link" itemprop="url">git commit message 标准</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1230,13 +1433,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">20k</span>
+    <span title="站点总字数">25k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">36 分钟</span>
+    <span title="站点阅读时长">46 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

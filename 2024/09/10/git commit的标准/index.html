@@ -19,26 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"thetheorange.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="git">
-<meta property="og:url" content="https://thetheorange.github.io/git_tag/index.html">
+    <meta name="description" content="基本格式type + 描述 type类型 feat 新功能 fix&#x2F;to  fix 产生diff并自动修复问题。适合一次提交直接修复格式 to 只产生diff不自动修复此问题。适合于多次提交。最终修复问题提交时使用fix   docs 提交文档 style 格式 不影响代码运行的变动  refactor 重构 perf 优化 test 测试 单元测试 chore 构建过程或辅助工具的变动">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git commit message 标准">
+<meta property="og:url" content="https://thetheorange.github.io/2024/09/10/git%20commit%E7%9A%84%E6%A0%87%E5%87%86/index.html">
 <meta property="og:site_name" content="thetheOrange的笔记">
+<meta property="og:description" content="基本格式type + 描述 type类型 feat 新功能 fix&#x2F;to  fix 产生diff并自动修复问题。适合一次提交直接修复格式 to 只产生diff不自动修复此问题。适合于多次提交。最终修复问题提交时使用fix   docs 提交文档 style 格式 不影响代码运行的变动  refactor 重构 perf 优化 test 测试 单元测试 chore 构建过程或辅助工具的变动">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-10T03:46:09.000Z">
-<meta property="article:modified_time" content="2024-09-11T09:45:52.891Z">
+<meta property="article:published_time" content="2024-09-10T02:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-10T02:10:13.217Z">
 <meta property="article:author" content="thetheOrange">
+<meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://thetheorange.github.io/git_tag/">
+<link rel="canonical" href="https://thetheorange.github.io/2024/09/10/git%20commit%E7%9A%84%E6%A0%87%E5%87%86/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://thetheorange.github.io/git_tag/index.html","path":"git_tag/index.html","title":"git"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://thetheorange.github.io/2024/09/10/git%20commit%E7%9A%84%E6%A0%87%E5%87%86/","path":"2024/09/10/git commit的标准/","title":"git commit message 标准"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>git | thetheOrange的笔记
-</title>
+<title>git commit message 标准 | thetheOrange的笔记</title>
   
 
 
@@ -124,7 +126,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -137,6 +139,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">基本格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#type%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">type类型</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -176,42 +179,129 @@
 
     </div>
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
 
 
-    
-    
-    
-    <div class="post-block" lang="zh-CN"><header class="post-header">
+  
 
-<h1 class="post-title" itemprop="name headline">git
-</h1>
 
-<div class="post-meta-container">
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/09/10/git%20commit%E7%9A%84%E6%A0%87%E5%87%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="thetheOrange">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="git commit message 标准 | thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          git commit message 标准
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-09-10 10:00:00 / 修改时间：10:10:13" itemprop="dateCreated datePublished" datetime="2024-09-10T10:00:00+08:00">2024-09-10</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>210</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      
-      <div class="post-body"><div class="tag-cloud">
-  <div class="tag-cloud-title">
-    目前共计 2 个标签
-  </div>
-  <div class="tag-cloud-tags">
-    <a href="/tags/git/" style="font-size: 12px;" class="tag-cloud-0">git</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 30px;" class="tag-cloud-10">算法</a>
-  </div>
-</div>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h2><p><strong>type</strong> + 描述</p>
+<h2 id="type类型"><a href="#type类型" class="headerlink" title="type类型"></a>type类型</h2><ul>
+<li><strong>feat</strong> 新功能</li>
+<li>fix&#x2F;to <ul>
+<li>fix <strong>产生diff</strong>并自动修复问题。适合一次提交直接修复格式</li>
+<li>to <strong>只产生diff</strong>不自动修复此问题。适合于多次提交。最终修复问题提交时使用fix</li>
+</ul>
+</li>
+<li>docs 提交文档</li>
+<li>style 格式 不影响代码运行的变动 </li>
+<li>refactor 重构</li>
+<li>perf 优化</li>
+<li>test 测试 单元测试</li>
+<li>chore 构建过程或辅助工具的变动</li>
+<li>revert 回滚到上一个版本</li>
+<li>merge 代码合并</li>
+<li>sync 同步主线或分支的bug</li>
+</ul>
 
-      </div>
-      
-      
-      
     </div>
 
     
     
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/git/" rel="tag"># git</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/09/11/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83-md/" rel="next" title="二分查找的一些思考">
+                  二分查找的一些思考 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
 
 
 </div>
