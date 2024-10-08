@@ -1223,6 +1223,7 @@ pre code {
   transition-property: left, right;
   width: 320px;
   z-index: 20;
+  box-shadow: rgba(0,0,0,0.16) 0px 10px 36px 0px, rgba(0,0,0,0.06) 0px 0px 0px 1px;
 }
 .sidebar a {
   border-bottom-color: #555;
@@ -1243,7 +1244,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #8699b0;
+  background: #b6c77e;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
