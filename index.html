@@ -146,13 +146,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -174,6 +174,170 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/10/08/%E4%BD%8D%E8%BF%90%E7%AE%97%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="thetheOrange">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/10/08/%E4%BD%8D%E8%BF%90%E7%AE%97%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="post-title-link" itemprop="url">位运算基础知识</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-10-08 20:14:18 / 修改时间：21:20:20" itemprop="dateCreated datePublished" datetime="2024-10-08T20:14:18+08:00">2024-10-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BD%8D%E8%BF%90%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">位运算</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>828</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="正数和负数在二进制中的表达"><a href="#正数和负数在二进制中的表达" class="headerlink" title="正数和负数在二进制中的表达"></a>正数和负数在二进制中的表达</h2><p>正数的二进制状态转负数的二进制：</p>
+<ol>
+<li>-1</li>
+<li>依次取反</li>
+</ol>
+<blockquote>
+<p>例：<br><code>7</code>的二进制为 <code>0111</code> 转为负数则为 <code>0110</code> -&gt; <code>1001</code></p>
+</blockquote>
+<p>负数的二进制状态转正数的二进制，为<strong>逆过程</strong>：</p>
+<ol>
+<li>依次取反</li>
+<li>+1</li>
+</ol>
+<blockquote>
+<p>例：<br><code>-7</code>的二进制为 <code>1001</code> 转为正数则为 <code>0110</code> -&gt; <code>0111</code></p>
+</blockquote>
+<h2 id="常见的位运算操作符"><a href="#常见的位运算操作符" class="headerlink" title="常见的位运算操作符"></a>常见的位运算操作符</h2><ul>
+<li><p><code>|</code> 或</p>
+<p>  相同位次中<strong>只要</strong>出现<code>1</code>则返回<code>1</code></p>
+<blockquote>
+<p>如 <code>0010 | 0111 = 0111</code></p>
+</blockquote>
+</li>
+<li><p><code>&amp;</code> 与</p>
+<p>  相同位次中<strong>都</strong>出现<code>1</code>则返回<code>1</code></p>
+<blockquote>
+<p>如 <code>0010 &amp; 0111 = 0010</code></p>
+</blockquote>
+</li>
+<li><p><code>~</code> 取反</p>
+<p>  <code>0</code>变成<code>1</code>，<code>1</code>变成<code>0</code></p>
+<blockquote>
+<p>如 <code>~0010 = 1101</code></p>
+</blockquote>
+</li>
+<li><p>^ 异或</p>
+<p>  相同位次中<strong>都</strong>不同才返回<code>1</code>，否则返回<code>0</code>。可以看成<em>无进位的相加</em></p>
+<blockquote>
+<p>如 <code>0010 ^ 0111 = 0101</code></p>
+</blockquote>
+</li>
+<li><p><code>&gt;&gt;</code> 右移 和 <code>&lt;&lt;</code> 左移</p>
+<p>  将二进制整体向左&#x2F;右移动<code>k</code>位，多出的位置用<code>0</code>补</p>
+<blockquote>
+<p>如 <code>0010 &gt;&gt; 1 = 0100</code> <code>0010 &gt;&gt; 1 = 0001</code></p>
+</blockquote>
+<p>  对于<strong>非负整数</strong>而言 左移相当于扩大<code>2</code>的<code>k</code>次方倍，左移相当于缩小<code>2</code>的<code>k</code>次方倍</p>
+</li>
+<li><p><code>&gt;&gt;&gt;</code> 右移</p>
+<p>  和<code>&gt;&gt;</code>功能相同，但是多出的位置用<em>符号位</em>补</p>
+<blockquote>
+<p>如 <code>1010 &gt;&gt;&gt; 1 = 1101</code></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="一些技巧"><a href="#一些技巧" class="headerlink" title="一些技巧"></a>一些技巧</h2><h3 id="取每个位次的数"><a href="#取每个位次的数" class="headerlink" title="取每个位次的数"></a>取每个位次的数</h3><p>对于32位的<code>int</code>类型数据，可以用如下方法依次取出每个位次的数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输入num</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">31</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">	<span class="type">int</span> tmp = (num &gt;&gt; i) &amp; <span class="number">1</span>;</span><br><span class="line">	std::cout &lt;&lt; tmp &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="向二进制状态填入1"><a href="#向二进制状态填入1" class="headerlink" title="向二进制状态填入1"></a>向二进制状态填入1</h3><p>对于<code>0</code>而言，可以用如下方法向指定位置填入<code>1</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ans |= <span class="number">1</span> &lt;&lt; i; <span class="comment">// i为指定位置</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="异或运算的性质和Brain-Kernighan算法"><a href="#异或运算的性质和Brain-Kernighan算法" class="headerlink" title="异或运算的性质和Brain Kernighan算法"></a>异或运算的性质和Brain Kernighan算法</h3><p>异或运算的性质：</p>
+<ol>
+<li><code>a ^ 0  = 0</code>、<code>a ^ a = 0</code> </li>
+<li>异或运算可以看成是无进位的相加</li>
+<li>异或运算满足交换律 即<code>a ^ b = c</code> -&gt; <code>c ^ b = a</code></li>
+<li>负数和正数的相互转化可以用<code>a = ~a + 1</code>，相当于<code>a = -a</code></li>
+</ol>
+<p>Brain Kernighan算法</p>
+<p>目的：提取出二进制状态<strong>最右边</strong>的<code>1</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> pos = a ^ (-a);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -741,133 +905,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/09/23/%E5%B9%B6%E6%9F%A5%E9%9B%86%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="thetheOrange">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="thetheOrange的笔记">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | thetheOrange的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/09/23/%E5%B9%B6%E6%9F%A5%E9%9B%86%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8/" class="post-title-link" itemprop="url">并查集的原理和应用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-09-23 15:20:32" itemprop="dateCreated datePublished" datetime="2024-09-23T15:20:32+08:00">2024-09-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-30 11:20:28" itemprop="dateModified" datetime="2024-09-30T11:20:28+08:00">2024-09-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.9k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="1-结构实现"><a href="#1-结构实现" class="headerlink" title="1. 结构实现"></a>1. 结构实现</h2><p>并查集要实现三个方法：</p>
-<ol>
-<li><code>int find(int x);</code> 查找代表元素</li>
-<li><code>bool isSameSet(int x, int y);</code> 查看是否为同一集合</li>
-<li><code>void _union(int x, int y);</code> 合并集合</li>
-</ol>
-<p>而并查集的结构，我们可以使用数组（顺序表）进行存储。数组下标<code>i</code>表示每个节点，数组的值<code>father[i]</code>对应着这个节点的代表节点。</p>
-<p>对于<code>father</code>数组的初始化，我们有如下代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里的n是节点总数</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) father[i] = i;</span><br></pre></td></tr></table></figure>
-
-<p>这样初始化，表示着每个节点一开始代表着自己。后期我们查找某个节点的代表节点的时候，只需依次跳转，直到<code>father[i] == i</code>就表示找到代表节点了</p>
-<p>接下来，我们依次来看前面三种方法的实现</p>
-<h3 id="1-1-find"><a href="#1-1-find" class="headerlink" title="1.1 find"></a>1.1 find</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x != father[x]) father[x] = <span class="built_in">find</span>(x);</span><br><span class="line">    <span class="keyword">return</span> father[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意，这里在每次的递归中<code>father[x] = find(x);</code>保证最后的<em>扁平化</em>，保证时间复杂度保持在常数级别。</p>
-<h3 id="1-2-isSameSet"><a href="#1-2-isSameSet" class="headerlink" title="1.2 isSameSet"></a>1.2 isSameSet</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isSameSet</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">find</span>(x) == <span class="built_in">find</span>(y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>查看代表元素是否相同，如果相同则表示在同一个集合中</p>
-<h3 id="1-3-union"><a href="#1-3-union" class="headerlink" title="1.3 _union"></a>1.3 _union</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> _union(<span class="type">int</span> x, <span class="type">int</span> y) &#123;</span><br><span class="line">    <span class="type">int</span> fx = <span class="built_in">find</span>(x), fy = <span class="built_in">find</span>(y);</span><br><span class="line">    <span class="comment">// 如果不是同一个集合 则进行合并</span></span><br><span class="line">    <span class="keyword">if</span> (fx != fy) &#123;</span><br><span class="line">        father[fx] = fy; <span class="comment">// 只需修改代表节点即可合并</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-具体案例"><a href="#2-具体案例" class="headerlink" title="2. 具体案例"></a>2. 具体案例</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/satisfiability-of-equality-equations/description/">990. 等式方程的可满足性</a></p>
-<blockquote>
-<p>给定一个由表示变量之间关系的字符串方程组成的数组，每个字符串方程 equations[i] 的长度为 4，并采用两种不同的形式之一：”a&#x3D;&#x3D;b” 或 “a!&#x3D;b”。在这里，a 和 b 是小写字母（不一定不同），表示单字母变量名。</p>
-<p>只有当可以将整数分配给变量名，以便满足所有给定的方程时才返回 true，否则返回 false。 </p>
-</blockquote>
-<p>这题我们可以将相等看作两个节点<strong>联通</strong>，或者说，这两个节点属于同一个集合。而不等式可以看作这两个节点不属于同一个节点。</p>
-<p>也就是说，我们使用并查集，先将等式的组合进行合并，再根据不等式中的字母元素，判断该元素是否同属一个节点。一旦出现矛盾，则返回<code>false</code></p>
-<p>解题代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        1. 对于所有的等式 可以看成合并操作</span></span><br><span class="line"><span class="comment">        2. 对应所有的不等式 看成这两个元素不在同一个集合中</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; father;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isEqual</span><span class="params">(string <span class="type">const</span>&amp; s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> s[<span class="number">1</span>] == <span class="string">&#x27;=&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (x != father[x]) father[x] = <span class="built_in">find</span>(father[x]);</span><br><span class="line">        <span class="keyword">return</span> father[x];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Union</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> fx = <span class="built_in">find</span>(x), fy = <span class="built_in">find</span>(y);</span><br><span class="line">        <span class="keyword">if</span> (fx != fy) &#123;</span><br><span class="line">            father[fx] = fy;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isSameSet</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">find</span>(x) == <span class="built_in">find</span>(y);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">equationsPossible</span><span class="params">(vector&lt;string&gt;&amp; equations)</span> </span>&#123;</span><br><span class="line">        father.<span class="built_in">assign</span>(<span class="number">26</span>, <span class="number">0</span>);  </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">char</span> i = <span class="string">&#x27;a&#x27;</span>; i &lt;= <span class="string">&#x27;z&#x27;</span>; ++i) father[i-<span class="string">&#x27;a&#x27;</span>] = i-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> s : equations) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">isEqual</span>(s)) <span class="built_in">Union</span>(s[<span class="number">0</span>]-<span class="string">&#x27;a&#x27;</span>, s.<span class="built_in">back</span>()-<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> s : equations) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="built_in">isEqual</span>(s)) <span class="keyword">if</span> (<span class="built_in">isSameSet</span>(s[<span class="number">0</span>]-<span class="string">&#x27;a&#x27;</span>, s.<span class="built_in">back</span>()-<span class="string">&#x27;a&#x27;</span>)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;; </span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -891,13 +928,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">25k</span>
+    <span title="站点总字数">26k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">46 分钟</span>
+    <span title="站点阅读时长">48 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

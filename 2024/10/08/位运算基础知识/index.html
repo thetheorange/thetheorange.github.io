@@ -19,28 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"thetheorange.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Floyd算法借助邻接矩阵辅助，Floyd算法可以解决数据量不大，且权值中有负数的图，但不能是存在负环的图的最短路径问题。该算法步骤如下：  在n个节点中寻找”跳点”bridge 如果graph[from][bridge] !&#x3D; INT_MAX &amp;&amp; graph[bridge][to] !&#x3D; INT_MAX &amp;&amp; graph[from][bridge] + grap">
+    <meta name="description" content="正数和负数在二进制中的表达正数的二进制状态转负数的二进制：  -1 依次取反   例：7的二进制为 0111 转为负数则为 0110 -&gt; 1001  负数的二进制状态转正数的二进制，为逆过程：  依次取反 +1   例：-7的二进制为 1001 转为正数则为 0110 -&gt; 0111  常见的位运算操作符 | 或   相同位次中只要出现1则返回1  如 0010 | 0111 &#x3D; 0">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图的最短路径—Floyd算法和Bellman-Ford算法">
-<meta property="og:url" content="https://thetheorange.github.io/2024/09/26/%E5%9B%BE%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E2%80%94Floyd%E7%AE%97%E6%B3%95%E5%92%8CBellman-Ford%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:title" content="位运算基础知识">
+<meta property="og:url" content="https://thetheorange.github.io/2024/10/08/%E4%BD%8D%E8%BF%90%E7%AE%97%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="thetheOrange的笔记">
-<meta property="og:description" content="Floyd算法借助邻接矩阵辅助，Floyd算法可以解决数据量不大，且权值中有负数的图，但不能是存在负环的图的最短路径问题。该算法步骤如下：  在n个节点中寻找”跳点”bridge 如果graph[from][bridge] !&#x3D; INT_MAX &amp;&amp; graph[bridge][to] !&#x3D; INT_MAX &amp;&amp; graph[from][bridge] + grap">
+<meta property="og:description" content="正数和负数在二进制中的表达正数的二进制状态转负数的二进制：  -1 依次取反   例：7的二进制为 0111 转为负数则为 0110 -&gt; 1001  负数的二进制状态转正数的二进制，为逆过程：  依次取反 +1   例：-7的二进制为 1001 转为正数则为 0110 -&gt; 0111  常见的位运算操作符 | 或   相同位次中只要出现1则返回1  如 0010 | 0111 &#x3D; 0">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-26T06:04:27.000Z">
-<meta property="article:modified_time" content="2024-09-30T03:20:47.456Z">
+<meta property="article:published_time" content="2024-10-08T12:14:18.000Z">
+<meta property="article:modified_time" content="2024-10-08T13:20:20.370Z">
 <meta property="article:author" content="thetheOrange">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://thetheorange.github.io/2024/09/26/%E5%9B%BE%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E2%80%94Floyd%E7%AE%97%E6%B3%95%E5%92%8CBellman-Ford%E7%AE%97%E6%B3%95/">
+<link rel="canonical" href="https://thetheorange.github.io/2024/10/08/%E4%BD%8D%E8%BF%90%E7%AE%97%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://thetheorange.github.io/2024/09/26/%E5%9B%BE%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E2%80%94Floyd%E7%AE%97%E6%B3%95%E5%92%8CBellman-Ford%E7%AE%97%E6%B3%95/","path":"2024/09/26/图的最短路径—Floyd算法和Bellman-Ford算法/","title":"图的最短路径—Floyd算法和Bellman-Ford算法"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://thetheorange.github.io/2024/10/08/%E4%BD%8D%E8%BF%90%E7%AE%97%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/","path":"2024/10/08/位运算基础知识/","title":"位运算基础知识"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>图的最短路径—Floyd算法和Bellman-Ford算法 | thetheOrange的笔记</title>
+<title>位运算基础知识 | thetheOrange的笔记</title>
   
 
 
@@ -139,7 +139,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Floyd%E7%AE%97%E6%B3%95"><span class="nav-text">Floyd算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bellman-Ford%E7%AE%97%E6%B3%95"><span class="nav-text">Bellman-Ford算法</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E6%95%B0%E5%92%8C%E8%B4%9F%E6%95%B0%E5%9C%A8%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD%E7%9A%84%E8%A1%A8%E8%BE%BE"><span class="nav-text">正数和负数在二进制中的表达</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E4%BD%8D%E8%BF%90%E7%AE%97%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="nav-text">常见的位运算操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7"><span class="nav-text">一些技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E6%AF%8F%E4%B8%AA%E4%BD%8D%E6%AC%A1%E7%9A%84%E6%95%B0"><span class="nav-text">取每个位次的数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%8A%B6%E6%80%81%E5%A1%AB%E5%85%A51"><span class="nav-text">向二进制状态填入1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97%E7%9A%84%E6%80%A7%E8%B4%A8%E5%92%8CBrain-Kernighan%E7%AE%97%E6%B3%95"><span class="nav-text">异或运算的性质和Brain Kernighan算法</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -190,7 +190,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/09/26/%E5%9B%BE%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E2%80%94Floyd%E7%AE%97%E6%B3%95%E5%92%8CBellman-Ford%E7%AE%97%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/10/08/%E4%BD%8D%E8%BF%90%E7%AE%97%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -203,12 +203,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="图的最短路径—Floyd算法和Bellman-Ford算法 | thetheOrange的笔记">
+      <meta itemprop="name" content="位运算基础知识 | thetheOrange的笔记">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          图的最短路径—Floyd算法和Bellman-Ford算法
+          位运算基础知识
         </h1>
 
         <div class="post-meta-container">
@@ -218,15 +218,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2024-09-26 14:04:27" itemprop="dateCreated datePublished" datetime="2024-09-26T14:04:27+08:00">2024-09-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-30 11:20:47" itemprop="dateModified" datetime="2024-09-30T11:20:47+08:00">2024-09-30</time>
+      <time title="创建时间：2024-10-08 20:14:18 / 修改时间：21:20:20" itemprop="dateCreated datePublished" datetime="2024-10-08T20:14:18+08:00">2024-10-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -234,7 +228,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
+          <a href="/categories/%E4%BD%8D%E8%BF%90%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">位运算</span></a>
         </span>
     </span>
 
@@ -252,7 +246,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1k</span>
+      <span>828</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -269,23 +263,77 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Floyd算法"><a href="#Floyd算法" class="headerlink" title="Floyd算法"></a>Floyd算法</h2><p>借助邻接矩阵辅助，Floyd算法可以解决数据量不大，且权值中有负数的图，但不能是存在负环的图的最短路径问题。该算法步骤如下：</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="正数和负数在二进制中的表达"><a href="#正数和负数在二进制中的表达" class="headerlink" title="正数和负数在二进制中的表达"></a>正数和负数在二进制中的表达</h2><p>正数的二进制状态转负数的二进制：</p>
 <ol>
-<li>在<code>n</code>个节点中寻找”跳点”<code>bridge</code></li>
-<li>如果<code>graph[from][bridge] != INT_MAX &amp;&amp; graph[bridge][to] != INT_MAX &amp;&amp; graph[from][bridge] + graph[bridge][to] &lt; graph[from][to]</code> 则更新邻接矩阵</li>
+<li>-1</li>
+<li>依次取反</li>
 </ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> bridge = <span class="number">0</span>; bridge &lt; n; ++bridge) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> from = <span class="number">0</span>; from &lt; n; ++from)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> to = <span class="number">0</span>; to &lt; n; ++to) &#123;</span><br><span class="line">            <span class="keyword">if</span> (graph[from][bridge] != INT_MAX &amp;&amp;</span><br><span class="line">                graph[bridge][to] != INT_MAX &amp;&amp;</span><br><span class="line">                graph[from][bridge] + graph[bridge][to] &lt; graph[from][to]) &#123;</span><br><span class="line">                    graph[from][to] = graph[from][bridge] + graph[bridge][to];</span><br><span class="line">                &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>显而易见，floyd算法的时间复杂度是<code>O(n^3)</code> 空间复杂度是<code>O(n^2)</code></p>
-<h2 id="Bellman-Ford算法"><a href="#Bellman-Ford算法" class="headerlink" title="Bellman-Ford算法"></a>Bellman-Ford算法</h2><p>Bellman-Ford 可以解决权值中存在负数，但不能存在负环的图，找出任意两点的最短路径问题。该算法步骤如下：</p>
+<blockquote>
+<p>例：<br><code>7</code>的二进制为 <code>0111</code> 转为负数则为 <code>0110</code> -&gt; <code>1001</code></p>
+</blockquote>
+<p>负数的二进制状态转正数的二进制，为<strong>逆过程</strong>：</p>
 <ol>
-<li>初始化<code>distance</code>数组 即<code>vector&lt;int&gt;distance(n, INT_MAX);</code></li>
-<li>对所有边进行<code>n-1</code>的“松弛”（取最小值）操作</li>
+<li>依次取反</li>
+<li>+1</li>
 </ol>
-<p>算法模版如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">distance</span><span class="params">(n, INT_MAX)</span></span>;</span><br><span class="line">distance[<span class="number">0</span>] = <span class="number">0</span>; <span class="comment">// 源点设为0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> edge : edges) &#123;</span><br><span class="line">        <span class="type">int</span> from = edge[<span class="number">0</span>], to = edge[<span class="number">1</span>], weight = edge[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">if</span> (distance[from] != INT_MAX) &#123;</span><br><span class="line">            distance[to] = <span class="built_in">min</span>(distance[to], distance[from] + weight);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>例：<br><code>-7</code>的二进制为 <code>1001</code> 转为正数则为 <code>0110</code> -&gt; <code>0111</code></p>
+</blockquote>
+<h2 id="常见的位运算操作符"><a href="#常见的位运算操作符" class="headerlink" title="常见的位运算操作符"></a>常见的位运算操作符</h2><ul>
+<li><p><code>|</code> 或</p>
+<p>  相同位次中<strong>只要</strong>出现<code>1</code>则返回<code>1</code></p>
+<blockquote>
+<p>如 <code>0010 | 0111 = 0111</code></p>
+</blockquote>
+</li>
+<li><p><code>&amp;</code> 与</p>
+<p>  相同位次中<strong>都</strong>出现<code>1</code>则返回<code>1</code></p>
+<blockquote>
+<p>如 <code>0010 &amp; 0111 = 0010</code></p>
+</blockquote>
+</li>
+<li><p><code>~</code> 取反</p>
+<p>  <code>0</code>变成<code>1</code>，<code>1</code>变成<code>0</code></p>
+<blockquote>
+<p>如 <code>~0010 = 1101</code></p>
+</blockquote>
+</li>
+<li><p>^ 异或</p>
+<p>  相同位次中<strong>都</strong>不同才返回<code>1</code>，否则返回<code>0</code>。可以看成<em>无进位的相加</em></p>
+<blockquote>
+<p>如 <code>0010 ^ 0111 = 0101</code></p>
+</blockquote>
+</li>
+<li><p><code>&gt;&gt;</code> 右移 和 <code>&lt;&lt;</code> 左移</p>
+<p>  将二进制整体向左&#x2F;右移动<code>k</code>位，多出的位置用<code>0</code>补</p>
+<blockquote>
+<p>如 <code>0010 &gt;&gt; 1 = 0100</code> <code>0010 &gt;&gt; 1 = 0001</code></p>
+</blockquote>
+<p>  对于<strong>非负整数</strong>而言 左移相当于扩大<code>2</code>的<code>k</code>次方倍，左移相当于缩小<code>2</code>的<code>k</code>次方倍</p>
+</li>
+<li><p><code>&gt;&gt;&gt;</code> 右移</p>
+<p>  和<code>&gt;&gt;</code>功能相同，但是多出的位置用<em>符号位</em>补</p>
+<blockquote>
+<p>如 <code>1010 &gt;&gt;&gt; 1 = 1101</code></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="一些技巧"><a href="#一些技巧" class="headerlink" title="一些技巧"></a>一些技巧</h2><h3 id="取每个位次的数"><a href="#取每个位次的数" class="headerlink" title="取每个位次的数"></a>取每个位次的数</h3><p>对于32位的<code>int</code>类型数据，可以用如下方法依次取出每个位次的数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输入num</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">31</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">	<span class="type">int</span> tmp = (num &gt;&gt; i) &amp; <span class="number">1</span>;</span><br><span class="line">	std::cout &lt;&lt; tmp &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Bellman-Ford算法的时间复杂度为 <code>O(n^2)</code> 空间复杂度为<code>O(n)</code></p>
+<h3 id="向二进制状态填入1"><a href="#向二进制状态填入1" class="headerlink" title="向二进制状态填入1"></a>向二进制状态填入1</h3><p>对于<code>0</code>而言，可以用如下方法向指定位置填入<code>1</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ans |= <span class="number">1</span> &lt;&lt; i; <span class="comment">// i为指定位置</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="异或运算的性质和Brain-Kernighan算法"><a href="#异或运算的性质和Brain-Kernighan算法" class="headerlink" title="异或运算的性质和Brain Kernighan算法"></a>异或运算的性质和Brain Kernighan算法</h3><p>异或运算的性质：</p>
+<ol>
+<li><code>a ^ 0  = 0</code>、<code>a ^ a = 0</code> </li>
+<li>异或运算可以看成是无进位的相加</li>
+<li>异或运算满足交换律 即<code>a ^ b = c</code> -&gt; <code>c ^ b = a</code></li>
+<li>负数和正数的相互转化可以用<code>a = ~a + 1</code>，相当于<code>a = -a</code></li>
+</ol>
+<p>Brain Kernighan算法</p>
+<p>目的：提取出二进制状态<strong>最右边</strong>的<code>1</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> pos = a ^ (-a);</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -302,14 +350,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/09/26/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E2%80%94kruskal%E5%92%8Cprim%E7%AE%97%E6%B3%95/" rel="prev" title="最小生成树—kruskal和prim算法">
-                  <i class="fa fa-angle-left"></i> 最小生成树—kruskal和prim算法
+                <a href="/2024/09/30/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" rel="prev" title="排序算法总结">
+                  <i class="fa fa-angle-left"></i> 排序算法总结
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/09/27/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91-AVL%E6%A0%91-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" rel="next" title="平衡二叉树(AVL树)与二叉搜索树">
-                  平衡二叉树(AVL树)与二叉搜索树 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
