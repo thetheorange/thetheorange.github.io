@@ -146,7 +146,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,297 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/09/23/%E5%9B%BE%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E2%80%94BFS%E5%92%8CDijkstra%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="thetheOrange">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/09/23/%E5%9B%BE%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E2%80%94BFS%E5%92%8CDijkstra%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">图的最短路径—BFS和Dijkstra算法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-23 09:52:06" itemprop="dateCreated datePublished" datetime="2024-09-23T09:52:06+08:00">2024-09-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-11 16:33:36" itemprop="dateModified" datetime="2024-10-11T16:33:36+08:00">2024-10-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h2><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>针对无权图，给定一个起始点，要求其他点到起始点的最短路径，可以使用BFS（广度优先搜索）算法得出结果。</p>
+<h3 id="代码实现和原理分析"><a href="#代码实现和原理分析" class="headerlink" title="代码实现和原理分析"></a>代码实现和原理分析</h3><p>给出下面一个图，假设起始点为3</p>
+<p><img src="/../images/graph.png" alt="有向无权图"></p>
+<p>使用<code>distance数组</code>和<code>visited数组</code>分别记录每个点的最短路径和该点是否被访问过。</p>
+<p>如需记录最短路径，则需要<code>path数组</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">distance</span><span class="params">(n<span class="number">+1</span>, <span class="number">-1</span>)</span></span>; <span class="comment">// -1表示距离无穷大 如果遍历结束后distance[i]为-1 则表示与这个节点不相通</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">visited</span><span class="params">(n<span class="number">+1</span>, <span class="literal">false</span>)</span></span>; <span class="comment">// 初始化为false 表示默认都没访问到</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">path</span><span class="params">(n<span class="number">+1</span>, <span class="number">-1</span>)</span></span>; <span class="comment">// 记录前驱节点</span></span><br></pre></td></tr></table></figure>
+
+<p>对于起始点，其<code>distance[start]</code>应该初始化为<code>0</code>， <code>visited[start]</code>初始化为<code>true</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">distance[start] = <span class="number">0</span>;</span><br><span class="line">visited[start] = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<p>开始广度优先搜索，<strong>依次标记每个未访问的节点为访问状态</strong>，这样做可以保证最短路径的节点，<strong>最先被标记</strong>， 同时也可以避免成环问题 </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">q.<span class="built_in">push</span>(start);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">    <span class="type">int</span> size = q.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">while</span> (size--) &#123;</span><br><span class="line">        <span class="type">int</span> cur = q.<span class="built_in">front</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="comment">// 遍历邻居</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> neighbor : graph[cur]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[neighbor]) &#123;</span><br><span class="line">                distance[neighbor] = distance[cur] + <span class="number">1</span>;</span><br><span class="line">                path[neighbor] = cur;</span><br><span class="line">                visited[neighbor] = <span class="literal">true</span>;</span><br><span class="line">                q.<span class="built_in">push</span>(neighbor);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<p>完整代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 构造图</span></span><br><span class="line">	vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; graph&#123; &#123;&#125;, &#123;<span class="number">4</span>&#125;, &#123;<span class="number">5</span>&#125;, &#123;<span class="number">1</span>&#125;, &#123;<span class="number">3</span>, <span class="number">2</span>&#125;, &#123;<span class="number">3</span>&#125; &#125;;</span><br><span class="line">	<span class="type">int</span> n = <span class="number">5</span>;</span><br><span class="line">	<span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">distance</span><span class="params">(n + <span class="number">1</span>, <span class="number">-1</span>)</span></span>;</span><br><span class="line">	<span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">path</span><span class="params">(n + <span class="number">1</span>, <span class="number">-1</span>)</span></span>;</span><br><span class="line">	<span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">visited</span><span class="params">(n + <span class="number">1</span>, <span class="literal">false</span>)</span></span>;</span><br><span class="line">	distance[<span class="number">3</span>] = <span class="number">0</span>;</span><br><span class="line">	visited[<span class="number">3</span>] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 开始广度优先搜索</span></span><br><span class="line">	queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">	q.<span class="built_in">push</span>(<span class="number">3</span>);</span><br><span class="line">	<span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">		<span class="type">int</span> size = q.<span class="built_in">size</span>();</span><br><span class="line">		<span class="keyword">while</span> (size--) &#123;</span><br><span class="line">			<span class="type">int</span> cur = q.<span class="built_in">front</span>();</span><br><span class="line">			q.<span class="built_in">pop</span>();</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">auto</span> neighbor : graph[cur]) &#123;</span><br><span class="line">				<span class="keyword">if</span> (!visited[neighbor]) &#123;</span><br><span class="line">					distance[neighbor] = distance[cur] + <span class="number">1</span>;</span><br><span class="line">					path[neighbor] = cur;</span><br><span class="line">					visited[neighbor] = <span class="literal">true</span>;</span><br><span class="line">					q.<span class="built_in">push</span>(neighbor);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 打印distance数组</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> i : distance) &#123;</span><br><span class="line">		cout &lt;&lt; i &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 打印path数组</span></span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> i : path) &#123;</span><br><span class="line">		cout &lt;&lt; i &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="时空复杂度分析"><a href="#时空复杂度分析" class="headerlink" title="时空复杂度分析"></a>时空复杂度分析</h3><p>因为需要访问所有节点（最坏情况下）所以时间复杂度应该为 <code>O(V+E)</code> n为节点数量</p>
+<p>空间复杂度 考虑到<code>distance</code>、<code>visited</code>和<code>path</code>数组的开销 应为<code>O(V)</code></p>
+<h2 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h2><h3 id="使用场景-1"><a href="#使用场景-1" class="headerlink" title="使用场景"></a>使用场景</h3><p>针对<strong>有权图</strong>，求最短路径问题，这里介绍的是使用<strong>堆</strong>进行优化的Dijkstra算法，而非暴力的Dijkstra算法</p>
+<h3 id="代码实现和原理分析-1"><a href="#代码实现和原理分析-1" class="headerlink" title="代码实现和原理分析"></a>代码实现和原理分析</h3><p>给出一个有权图，起点为1</p>
+<p><img src="/../images/weight_graph.png" alt="有向有权图"></p>
+<p>Dijkstra算法的具体步骤，可以分为以下几点：</p>
+<ol>
+<li>创建<code>distance</code>数组和<code>visited</code>数组，分别用于记录<em>最短路径</em>和<em>该节点是否已被访问</em>，这里的visited，还有另一层含义，即表示该节点的最短路径是否已经确定。</li>
+<li>初始化<code>distance</code>和<code>visited</code>数组，设置<code>distance[start] = 0;</code>，同时需注意<code>distance</code>数组中的<strong>初始值要尽可能大</strong></li>
+<li>建立小根堆，将初始节点压入堆中</li>
+<li>从小根堆中弹出元素<ol>
+<li>如果该节点未访问过 则<code>visited[cur] = true;</code></li>
+<li>如果该节点已访问过 则<code>continue</code></li>
+<li>处理各边<ol>
+<li>如果<code>!visited[neighbor] &amp;&amp; distance[cur] + weight &lt; distance[neighbor]</code>，则进行更新，即<code>distance[neighbor] = distance[cur] + weight; q.push(neighbor);</code></li>
+<li>其他情况不处理</li>
+</ol>
+</li>
+<li>重复第4步骤，直到小根堆为空</li>
+</ol>
+</li>
+</ol>
+<p>具体的代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// Dijkstra</span></span><br><span class="line"><span class="comment">// 创建图</span></span><br><span class="line">vector&lt;vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&gt; graph&#123; &#123;&#123;&#125;&#125;, &#123;&#123;<span class="number">2</span>, <span class="number">5</span>&#125;, &#123;<span class="number">3</span>, <span class="number">100</span>&#125;, &#123;<span class="number">4</span>, <span class="number">5</span>&#125;&#125;, &#123;&#123;<span class="number">3</span>, <span class="number">3</span>&#125;&#125;, &#123;&#123;<span class="number">5</span>, <span class="number">2</span>&#125;&#125;, &#123;&#123;&#125;&#125;, &#123;&#123;<span class="number">1</span>, <span class="number">5</span>&#125;, &#123;<span class="number">3</span>, <span class="number">1</span>&#125;&#125; &#125;;</span><br><span class="line"><span class="type">int</span> start = <span class="number">1</span>, n = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">distance</span><span class="params">(n + <span class="number">1</span>, INT_MAX)</span></span>;</span><br><span class="line"><span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">visited</span><span class="params">(n + <span class="number">1</span>, <span class="literal">false</span>)</span></span>;</span><br><span class="line">distance[start] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> cmp = [](vector&lt;<span class="type">int</span>&gt;&amp; a, vector&lt;<span class="type">int</span>&gt;&amp; b) -&gt; <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> a[<span class="number">1</span>] &gt; b[<span class="number">1</span>];</span><br><span class="line">	&#125;;</span><br><span class="line"><span class="comment">// 使用优先队列创建小根堆</span></span><br><span class="line">priority_queue&lt;vector&lt;<span class="type">int</span>&gt;, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;, <span class="keyword">decltype</span>(cmp)&gt;<span class="built_in">q</span>(cmp);</span><br><span class="line">q.<span class="built_in">push</span>(&#123; start, <span class="number">0</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; cur = q.<span class="built_in">top</span>();</span><br><span class="line">	q.<span class="built_in">pop</span>();</span><br><span class="line">	<span class="keyword">if</span> (visited[cur[<span class="number">0</span>]]) <span class="keyword">continue</span>;</span><br><span class="line">	visited[cur[<span class="number">0</span>]] = <span class="literal">true</span>;</span><br><span class="line">	<span class="comment">// 处理各边</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> neighbor : graph[cur[<span class="number">0</span>]]) &#123;</span><br><span class="line">        <span class="comment">// neighbor.size() &gt; 0判空</span></span><br><span class="line">		<span class="keyword">if</span> (neighbor.<span class="built_in">size</span>() &gt; <span class="number">0</span> &amp;&amp; !visited[neighbor[<span class="number">0</span>]] &amp;&amp; cur[<span class="number">1</span>] + neighbor[<span class="number">1</span>] &lt; distance[neighbor[<span class="number">0</span>]]) &#123;</span><br><span class="line">			distance[neighbor[<span class="number">0</span>]] = cur[<span class="number">1</span>] + neighbor[<span class="number">1</span>];</span><br><span class="line">			q.<span class="built_in">push</span>(&#123;neighbor[<span class="number">0</span>], distance[neighbor[<span class="number">0</span>]]&#125;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印distance数组</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> i : distance) &#123;</span><br><span class="line">	cout &lt;&lt; i &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="时空复杂度分析-1"><a href="#时空复杂度分析-1" class="headerlink" title="时空复杂度分析"></a>时空复杂度分析</h3><p>因为要遍历每一条边和每一个节点且要经过堆的调整 所以时间复杂度为 <code>O((V + E) log V)</code><br>空间复杂度显然为 <code>O(V)</code></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/09/14/%E9%A2%84%E7%AE%97%E5%86%85%E7%9A%84%E6%9C%80%E5%A4%9A%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%95%B0%E7%9B%AE%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88%E5%92%8C%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="thetheOrange">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/09/14/%E9%A2%84%E7%AE%97%E5%86%85%E7%9A%84%E6%9C%80%E5%A4%9A%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%95%B0%E7%9B%AE%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88%E5%92%8C%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">预算内的最多机器人数目——二分答案和单调队列</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-14 08:42:34" itemprop="dateCreated datePublished" datetime="2024-09-14T08:42:34+08:00">2024-09-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-11 16:34:57" itemprop="dateModified" datetime="2024-10-11T16:34:57+08:00">2024-10-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-number-of-robots-within-budget/description/">2398. 预算内的最多机器人数目</a></p>
+<blockquote>
+<p>你有 n 个机器人，给你两个下标从 0 开始的整数数组 <code>chargeTimes</code> 和 <code>runningCosts</code> ，两者长度都为 n 。第 i 个机器人充电时间为 <code>chargeTimes[i]</code> 单位时间，花费 <code>runningCosts[i]</code> 单位时间运行。再给你一个整数 budget 。</p>
+<p>运行 k 个机器人 总开销 是 <code>max(chargeTimes) + k * sum(runningCosts)</code> ，其中 <code>max(chargeTimes)</code> 是这 k 个机器人中最大充电时间，<code>sum(runningCosts)</code> 是这 k 个机器人的运行时间之和。</p>
+<p>请你返回在 不超过 <code>budget</code> 的前提下，你 最多 可以 <strong>连续</strong> 运行的机器人数目为多少。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入：chargeTimes = [3,6,1,3,4], runningCosts = [2,1,3,4,5], budget = 25</span><br><span class="line"></span><br><span class="line">输出：3</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">可以在 budget 以内运行所有单个机器人或者连续运行 2 个机器人。</span><br><span class="line">选择前 3 个机器人，可以得到答案最大值 3 。总开销是 max(3,6,1) + 3 * sum(2,1,3) = 6 + 3 * 6 = 24 ，小于 25 。</span><br><span class="line">可以看出无法在 budget 以内连续运行超过 3 个机器人，所以我们返回 3 。</span><br></pre></td></tr></table></figure>
+
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这题的关键是<strong>连续</strong>。</p>
+<p>因为<strong>连续</strong>，我们可以得出这样一个结论：</p>
+<p>假设说有k为最多的可以连续运行机器人数目，那么必定有 <code>k-1，k-2，k-3 ...</code> 的机器人满足条件。</p>
+<p>反过来，那就必定有 <code>k+1，k+2，k+3 ...</code> 的机器人不满足条件。</p>
+<p>而且k的范围必定在 <code>[0, chargeTimes.size()]</code> 里</p>
+<p>这样想，其实我们可以使用二分查找，来查找我们的答案。因为对于<code>k</code>的范围而言，<code>k</code>的范围可以视为一个单调递增的数组。而<code>k</code>相当于二分查找中的<code>mid</code>，<code>mid</code>左边的数满足条件，<code>mid</code>右边的数不满足条件。</p>
+<p>为了方便，我们使用开区间写法（不用考虑<code>mid+1</code>）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> left = <span class="number">0</span>, right = chargeTimes.<span class="built_in">size</span>()<span class="number">+1</span>;</span><br><span class="line"><span class="keyword">while</span> (left + <span class="number">1</span> &lt; right) &#123;</span><br><span class="line">    <span class="type">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">check</span>(mid)) left = mid; </span><br><span class="line">    <span class="keyword">else</span> right = mid;</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">return</span> left;</span><br></pre></td></tr></table></figure>
+
+<p>这个时候 <code>left</code> 就是答案。</p>
+<p>这里的check函数的作用是，检测k个连续的机器人是否合法，合法的标准是 <code>max(chargeTimes) + k * sum(runningCosts)</code>。转换一下，其实可以翻译成，在一个数组中，取<code>n</code>个长度为<code>k</code>的滑动窗口，判断这<code>n</code>个窗口中，是否存在一个窗口满足条件。</p>
+<p>这样看，是不是和<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sliding-window-maximum/description/">239. 滑动窗口最大值
+</a>的思路十分相似。</p>
+<p>接下来，我们先来解决这个题目。</p>
+<h3 id="前置题目和单调队列"><a href="#前置题目和单调队列" class="headerlink" title="前置题目和单调队列"></a>前置题目和单调队列</h3><blockquote>
+<p>给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。</p>
+<p>返回 滑动窗口中的最大值 。</p>
+</blockquote>
+<p>对于这道题而言，暴力解法就是取长度为k的滑动窗口，遍历整个数组，依次取窗口的最大值，最后返回结果即可。假设每个窗口大小为1的情况下，暴力解法的时间复杂度为<code>O(n^2)</code>，会明显地超时。</p>
+<p>另一种想法是，每次的滑动窗口的最大值，并不需要我们每次重新求值，而是可能和上次的<strong>值</strong>有关。</p>
+<p>例如，<code>[1,3,-1,-3,5,3,6,7]</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">滑动窗口的位置                最大值</span><br><span class="line">---------------               -----</span><br><span class="line">[1  3  -1] -3  5  3  6  7       3</span><br><span class="line"> 1 [3  -1  -3] 5  3  6  7       3</span><br></pre></td></tr></table></figure>
+
+<p>第一个窗口和第二个窗口的最大值其实是重复的，因为第二个滑动窗口向右滑动的时候，新加入的-3并没有大过3，而且，左边的边界收缩的时候，3也并没有移除，所以取3。</p>
+<p>既然如此，我们只要维护每个窗口的最大值就行了？</p>
+<p>最直白的想法，可能是使用优先队列<code>priority_queue</code>， 但是对于优先队列，找到最大值很容易，移除元素很困难，因为我们要维护最大值。</p>
+<p><em>如果有一种队列能够保持最大值且删除元素很容易，那就好了</em></p>
+<p>抱着这样的想法，我们可以引入<strong>单调队列</strong>。</p>
+<p><code>push</code>时，每次都保证队头元素为最大的元素。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">push</span><span class="params">(<span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (!q.<span class="built_in">empty</span>() &amp;&amp; q.<span class="built_in">back</span>() &lt; val) q.<span class="built_in">pop_back</span>();</span><br><span class="line">    q.<span class="built_in">push_back</span>(val);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>pop</code>时，当队头元素为目标元素时，应该将其移除。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pop</span><span class="params">(<span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!q.<span class="built_in">empty</span>() &amp;&amp; q.<span class="built_in">front</span>() == val) q.<span class="built_in">pop_front</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这样，我们再使用<strong>滑动窗口</strong>的思想，当窗口长度为k时，取队头元素，使用<code>pop(val)</code>移除元素，不为k时，则维护最大值，使用<code>push(val)</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    deque&lt;<span class="type">int</span>&gt; que;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">pop</span><span class="params">(<span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>-&gt;que.<span class="built_in">empty</span>() &amp;&amp; <span class="keyword">this</span>-&gt;que.<span class="built_in">front</span>() == val) <span class="keyword">this</span>-&gt;que.<span class="built_in">pop_front</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">push</span><span class="params">(<span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (!<span class="keyword">this</span>-&gt;que.<span class="built_in">empty</span>() &amp;&amp; <span class="keyword">this</span>-&gt;que.<span class="built_in">back</span>() &lt; val) <span class="keyword">this</span>-&gt;que.<span class="built_in">pop_back</span>(); <span class="comment">// 比最大值小的数且在最大值前面的数无意义 可以直接去掉</span></span><br><span class="line">        <span class="keyword">this</span>-&gt;que.<span class="built_in">push_back</span>(val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">maxSlidingWindow</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; ret;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> right = <span class="number">0</span>; right &lt; nums.<span class="built_in">size</span>(); ++right) &#123;</span><br><span class="line">            <span class="type">int</span> len = right - left + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">this</span>-&gt;<span class="built_in">push</span>(nums[right]);</span><br><span class="line">            <span class="keyword">if</span> (left &lt;= nums.<span class="built_in">size</span>() - k &amp;&amp; len == k) &#123;</span><br><span class="line">                ret.<span class="built_in">push_back</span>(<span class="keyword">this</span>-&gt;que.<span class="built_in">front</span>());</span><br><span class="line">                <span class="keyword">this</span>-&gt;<span class="built_in">pop</span>(nums[left++]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="解决本题"><a href="#解决本题" class="headerlink" title="解决本题"></a>解决本题</h3><p>对于本题的<code>max(chargeTimes) + k * sum(runningCosts)</code>合法条件，<code>max(chargeTimes)</code>其实就是维护每个长度为<code>k</code>的滑动窗口的最大值，对于<code>sum(runningCosts)</code>，维护的是每一个窗口的总和。</p>
+<p>这样一来，思路就很明显了。代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    deque&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">push</span><span class="params">(<span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (!q.<span class="built_in">empty</span>() &amp;&amp; q.<span class="built_in">back</span>() &lt; val) q.<span class="built_in">pop_back</span>();</span><br><span class="line">        q.<span class="built_in">push_back</span>(val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">pop</span><span class="params">(<span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!q.<span class="built_in">empty</span>() &amp;&amp; q.<span class="built_in">front</span>() == val) q.<span class="built_in">pop_front</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximumRobots</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; chargeTimes, vector&lt;<span class="type">int</span>&gt;&amp; runningCosts, <span class="type">long</span> <span class="type">long</span> budget)</span> </span>&#123;</span><br><span class="line">        function&lt;<span class="type">bool</span>(<span class="type">int</span>)&gt;check = [&amp;](<span class="type">int</span> k) &#123;</span><br><span class="line">            q.<span class="built_in">clear</span>(); <span class="comment">// 每次判断前 一定要进行初始化 否则会导致上一次的最大值残留</span></span><br><span class="line">            <span class="comment">// 求取每个窗口的最大值</span></span><br><span class="line">            <span class="type">int</span> l = <span class="number">0</span>, n = chargeTimes.<span class="built_in">size</span>();</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> sum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> r = <span class="number">0</span>; r &lt; n; ++r) &#123;</span><br><span class="line">                <span class="type">int</span> len = r - l + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">this</span>-&gt;<span class="built_in">push</span>(chargeTimes[r]);</span><br><span class="line">                sum += runningCosts[r];</span><br><span class="line">                <span class="keyword">if</span> (l &lt;= n - k &amp;&amp; len == k) &#123;</span><br><span class="line">                    <span class="keyword">if</span> ((q.<span class="built_in">front</span>()+k*sum)&lt;= budget) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">this</span>-&gt;<span class="built_in">pop</span>(chargeTimes[l]);</span><br><span class="line">                    sum -= runningCosts[l++];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>, right = chargeTimes.<span class="built_in">size</span>()<span class="number">+1</span>;</span><br><span class="line">        <span class="keyword">while</span> (left + <span class="number">1</span> &lt; right) &#123;</span><br><span class="line">            <span class="type">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">check</span>(mid)) left = mid;</span><br><span class="line">            <span class="keyword">else</span> right = mid;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="时间、空间复杂度分析"><a href="#时间、空间复杂度分析" class="headerlink" title="时间、空间复杂度分析"></a>时间、空间复杂度分析</h2><p>以下<code>n</code>为<code>chargeTimes</code>数组的长度</p>
+<p>时间：<code>O((log 2)*n)</code> 二分答案加滑动窗口<br>空间复杂度： <code>O(n)</code> 假如<code>k</code>为n时，需要申请大小为<code>n</code>的双端队列。 </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -452,13 +743,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">34k</span>
+    <span title="站点总字数">36k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:02</span>
+    <span title="站点阅读时长">1:05</span>
   </span>
 </div>
 <div class="busuanzi-count">
