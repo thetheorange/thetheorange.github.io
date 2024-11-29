@@ -19,29 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"thetheorange.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="基本步骤 创建一个indegree数组，用于记录各个节点的入度情况。以入度为0的节点作为拓扑排序的起点。 将起点压入队列中。 取队头元素，如果没有visited过，则visited[cur] &#x3D; true。如果存在重复visited，则说明成环。 处理各边，依次对相邻节点的入度值-1，将入度为0的节点压入队列中  代码实现12345678910111213141516171819202122232">
+    <meta name="description" content="基本思路 开始时快指针走两步，慢指针走一步 如果相遇，则找到第一个相遇的点 快指针回到头结点，慢指针原地不动 快慢指针各走一步，这时再相遇的点就是入环节点  链表类型例题LCR 022. 环形链表 II  给定一个包含 n + 1 个整数的数组 nums ，其数字都在 [1, n] 范围内（包括 1 和 n），可知至少存在一个重复的整数。 假设 nums 只有 一个重复的整数 ，返回 这个重复的数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="拓扑排序">
-<meta property="og:url" content="https://thetheorange.github.io/2024/10/24/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:title" content="求第一个入环的点">
+<meta property="og:url" content="https://thetheorange.github.io/2024/11/27/%E6%B1%82%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%A5%E7%8E%AF%E7%9A%84%E7%82%B9/index.html">
 <meta property="og:site_name" content="thetheOrange的笔记">
-<meta property="og:description" content="基本步骤 创建一个indegree数组，用于记录各个节点的入度情况。以入度为0的节点作为拓扑排序的起点。 将起点压入队列中。 取队头元素，如果没有visited过，则visited[cur] &#x3D; true。如果存在重复visited，则说明成环。 处理各边，依次对相邻节点的入度值-1，将入度为0的节点压入队列中  代码实现12345678910111213141516171819202122232">
+<meta property="og:description" content="基本思路 开始时快指针走两步，慢指针走一步 如果相遇，则找到第一个相遇的点 快指针回到头结点，慢指针原地不动 快慢指针各走一步，这时再相遇的点就是入环节点  链表类型例题LCR 022. 环形链表 II  给定一个包含 n + 1 个整数的数组 nums ，其数字都在 [1, n] 范围内（包括 1 和 n），可知至少存在一个重复的整数。 假设 nums 只有 一个重复的整数 ，返回 这个重复的数">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-10-24T06:01:42.000Z">
-<meta property="article:modified_time" content="2024-10-24T06:46:52.471Z">
+<meta property="article:published_time" content="2024-11-27T12:21:55.000Z">
+<meta property="article:modified_time" content="2024-11-27T12:39:46.991Z">
 <meta property="article:author" content="thetheOrange">
 <meta property="article:tag" content="算法">
-<meta property="article:tag" content="图论">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://thetheorange.github.io/2024/10/24/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/">
+<link rel="canonical" href="https://thetheorange.github.io/2024/11/27/%E6%B1%82%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%A5%E7%8E%AF%E7%9A%84%E7%82%B9/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://thetheorange.github.io/2024/10/24/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/","path":"2024/10/24/拓扑排序/","title":"拓扑排序"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://thetheorange.github.io/2024/11/27/%E6%B1%82%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%A5%E7%8E%AF%E7%9A%84%E7%82%B9/","path":"2024/11/27/求第一个入环的点/","title":"求第一个入环的点"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>拓扑排序 | thetheOrange的笔记</title>
+<title>求第一个入环的点 | thetheOrange的笔记</title>
   
 
 
@@ -140,7 +139,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4"><span class="nav-text">基本步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-text">时间复杂度</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF"><span class="nav-text">基本思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8%E7%B1%BB%E5%9E%8B%E4%BE%8B%E9%A2%98"><span class="nav-text">链表类型例题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B%E4%BE%8B%E9%A2%98"><span class="nav-text">数组类型例题</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -191,7 +190,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/10/24/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/">
+    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/11/27/%E6%B1%82%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%A5%E7%8E%AF%E7%9A%84%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -204,12 +203,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="拓扑排序 | thetheOrange的笔记">
+      <meta itemprop="name" content="求第一个入环的点 | thetheOrange的笔记">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          拓扑排序
+          求第一个入环的点
         </h1>
 
         <div class="post-meta-container">
@@ -221,7 +220,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-10-24 14:01:42 / 修改时间：14:46:52" itemprop="dateCreated datePublished" datetime="2024-10-24T14:01:42+08:00">2024-10-24</time>
+      <time title="创建时间：2024-11-27 20:21:55 / 修改时间：20:39:46" itemprop="dateCreated datePublished" datetime="2024-11-27T20:21:55+08:00">2024-11-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -229,7 +228,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
+          <a href="/categories/%E9%93%BE%E8%A1%A8/" itemprop="url" rel="index"><span itemprop="name">链表</span></a>
         </span>
     </span>
 
@@ -247,14 +246,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
+      <span>1.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -264,16 +263,31 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><ol>
-<li>创建一个<code>indegree</code>数组，用于记录各个节点的入度情况。以入度为0的节点作为拓扑排序的起点。</li>
-<li>将起点压入队列中。</li>
-<li>取队头元素，如果没有<code>visited</code>过，则<code>visited[cur] = true</code>。如果存在重复<code>visited</code>，则说明成环。</li>
-<li>处理各边，依次对相邻节点的入度值-1，将入度为0的节点压入队列中</li>
+    <div class="post-body" itemprop="articleBody"><h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><ol>
+<li>开始时快指针走两步，慢指针走一步</li>
+<li>如果相遇，则找到第一个相遇的点</li>
+<li>快指针回到头结点，慢指针原地不动</li>
+<li>快慢指针各走一步，这时再相遇的点就是入环节点</li>
 </ol>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 建图</span></span><br><span class="line">	vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; graph&#123; &#123;<span class="number">1</span>, <span class="number">2</span>&#125;, &#123;<span class="number">3</span>&#125;, &#123;<span class="number">3</span>&#125;, &#123;<span class="number">4</span>&#125;, &#123;&#125; &#125;;</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; path;</span><br><span class="line">	<span class="comment">// 拓扑排序</span></span><br><span class="line">	queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">	q.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">indegree</span><span class="params">(<span class="number">5</span>, <span class="number">0</span>)</span></span>;<span class="comment">// 记录入度</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> i : graph) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> j : i) &#123;</span><br><span class="line">			indegree[j]++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">visited</span><span class="params">(<span class="number">5</span>, <span class="literal">false</span>)</span></span>;</span><br><span class="line">	<span class="comment">// 成环标志</span></span><br><span class="line">	<span class="type">bool</span> isCircle = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">		<span class="type">int</span> size = q.<span class="built_in">size</span>();</span><br><span class="line">		<span class="keyword">while</span> (size--) &#123;</span><br><span class="line">			<span class="type">int</span> cur = q.<span class="built_in">front</span>();</span><br><span class="line">			<span class="keyword">if</span> (visited[cur]) isCircle = <span class="literal">true</span>;</span><br><span class="line">			visited[cur] = <span class="literal">true</span>;</span><br><span class="line">			q.<span class="built_in">pop</span>();</span><br><span class="line">			path.<span class="built_in">push_back</span>(cur);</span><br><span class="line">			<span class="comment">// 处理各边</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">auto</span> neighbor : graph[cur]) &#123;</span><br><span class="line">				<span class="comment">// 如果入度为0则加入队列中</span></span><br><span class="line">				<span class="keyword">if</span> (--indegree[neighbor] == <span class="number">0</span>) &#123;</span><br><span class="line">					q.<span class="built_in">push</span>(neighbor);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 打印path</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> i : path) &#123;</span><br><span class="line">		cout &lt;&lt; i &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 是否成环</span></span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; isCircle;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="链表类型例题"><a href="#链表类型例题" class="headerlink" title="链表类型例题"></a>链表类型例题</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/c32eOV/description">LCR 022. 环形链表 II</a></p>
+<blockquote>
+<p>给定一个包含 n + 1 个整数的数组 nums ，其数字都在 [1, n] 范围内（包括 1 和 n），可知至少存在一个重复的整数。</p>
+<p>假设 nums 只有 一个重复的整数 ，返回 这个重复的数 。</p>
+<p>你设计的解决方案必须 不修改 数组 nums 且只用常量级 O(1) 的额外空间。</p>
+</blockquote>
+<p>第一种方法，不考虑题目中限定的解决方案条件，可以使用<code>hash_set</code>记录遍历过的节点，如果再次遍历到该节点，说明成环且该节点就是入环的节点。</p>
+<p>第二种方法，采用我们之前提到的思路，可以省去额外的空间，且空间复杂度为<code>O(1)</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">detectCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!head || !head-&gt;next || !head-&gt;next-&gt;next) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* slow = head-&gt;next;</span><br><span class="line">        ListNode* fast = head-&gt;next-&gt;next;</span><br><span class="line">        <span class="keyword">while</span> (fast != slow) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!fast-&gt;next || !fast-&gt;next-&gt;next) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            fast = fast-&gt;next-&gt;next;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        fast = head;</span><br><span class="line">        <span class="keyword">while</span> (fast != slow) &#123;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p><code>O(E+V)</code></p>
-
+<h2 id="数组类型例题"><a href="#数组类型例题" class="headerlink" title="数组类型例题"></a>数组类型例题</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-duplicate-number/description/">287. 寻找重复数</a></p>
+<blockquote>
+<p>给定一个包含 n + 1 个整数的数组 nums ，其数字都在 [1, n] 范围内（包括 1 和 n），可知至少存在一个重复的整数。</p>
+<p>假设 nums 只有 一个重复的整数 ，返回 这个重复的数 。</p>
+<p>你设计的解决方案必须 不修改 数组 nums 且只用常量级 O(1) 的额外空间。</p>
+</blockquote>
+<p>如果我们根据数组的元素进行坐标跳转，会发现一个规律，最后这个跳转的过程会形成一个环，而入环的节点，就是这个重复的数。</p>
+<p>因此，我们可以依照之前提到的流程，进行解答。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findDuplicate</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> slow = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> fast = nums[nums[<span class="number">0</span>]];</span><br><span class="line">        <span class="comment">// 找到第一个相遇的点</span></span><br><span class="line">        <span class="keyword">while</span> (fast != slow) &#123;</span><br><span class="line">            slow = nums[slow];</span><br><span class="line">            fast = nums[nums[fast]];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// fast回到头结点，slow待在原地</span></span><br><span class="line">        fast = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 每次各跳一步，直到相遇，此时相遇的点就是入环的点</span></span><br><span class="line">        <span class="keyword">while</span> (fast != slow) &#123;</span><br><span class="line">            fast = nums[fast];</span><br><span class="line">            slow = nums[slow];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -283,20 +297,19 @@
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
-              <a href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"># 图论</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/10/11/%E5%AD%97%E5%85%B8%E6%A0%91%E7%9A%84%E6%9E%84%E5%BB%BA/" rel="prev" title="字典树的定义和代码模版">
-                  <i class="fa fa-angle-left"></i> 字典树的定义和代码模版
+                <a href="/2024/11/24/%E5%BD%92%E5%B9%B6%E5%88%86%E6%B2%BB/" rel="prev" title="归并分治">
+                  <i class="fa fa-angle-left"></i> 归并分治
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/10/25/%E6%9C%80%E5%B0%8F%E6%A0%88/" rel="next" title="最小栈">
-                  最小栈 <i class="fa fa-angle-right"></i>
+                <a href="/2024/11/29/%E4%B8%80%E7%BB%B4%E5%B7%AE%E5%88%86%E6%80%BB%E7%BB%93/" rel="next" title="一维差分总结">
+                  一维差分总结 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

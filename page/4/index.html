@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"thetheorange.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"thetheorange.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="thetheOrange的笔记">
@@ -146,13 +146,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -174,6 +174,276 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/09/26/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E2%80%94kruskal%E5%92%8Cprim%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="thetheOrange">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/09/26/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E2%80%94kruskal%E5%92%8Cprim%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">最小生成树—kruskal和prim算法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-26 09:53:29" itemprop="dateCreated datePublished" datetime="2024-09-26T09:53:29+08:00">2024-09-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-11 16:34:13" itemprop="dateModified" datetime="2024-10-11T16:34:13+08:00">2024-10-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Kruskal算法模版"><a href="#Kruskal算法模版" class="headerlink" title="Kruskal算法模版"></a>Kruskal算法模版</h2><ol>
+<li>按各边权值进行从小到大排序</li>
+<li>检测是否有环（使用并查集）<ol>
+<li>如果两节点属于同一个集合 则说明有环</li>
+<li>如果两节点不属于同一个集合 不成环则进行合并</li>
+</ol>
+</li>
+</ol>
+<p>借助洛谷上的<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3366">最小生成树</a></p>
+<blockquote>
+<p>如题，给出一个无向图，求出最小生成树，如果该图不连通，则输出 orz。<br>输入格式</p>
+<p>第一行包含两个整数 N,MN,M，表示该图共有 NN 个结点和 MM 条无向边。</p>
+<p>接下来 MM 行每行包含三个整数 Xi,Yi,ZiXi​,Yi​,Zi​，表示有一条长度为 ZiZi​ 的无向边连接结点 Xi,YiXi​,Yi​。<br>输出格式</p>
+<p>如果该图连通，则输出一个整数表示最小生成树的各边的长度之和。如果该图不连通则输出 orz。</p>
+</blockquote>
+<p>模版代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; father;</span><br><span class="line"><span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 构建并查集</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= n; ++i) father.<span class="built_in">push_back</span>(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 查询并查集</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x != father[x]) father[x] = <span class="built_in">find</span>(father[x]);</span><br><span class="line">	<span class="keyword">return</span> father[x];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 合并</span></span><br><span class="line"><span class="type">void</span> _union(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> w) &#123;</span><br><span class="line">	<span class="type">int</span> fx = <span class="built_in">find</span>(x), fy = <span class="built_in">find</span>(y);</span><br><span class="line">	<span class="keyword">if</span> (fx != fy) &#123;</span><br><span class="line">		father[fy] = fx;</span><br><span class="line">		ans += w;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> N, M;</span><br><span class="line">	cin &gt;&gt; N &gt;&gt; M;</span><br><span class="line">	vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; edge;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; M; ++i) &#123;</span><br><span class="line">		<span class="type">int</span> from, to, weight;</span><br><span class="line">		cin &gt;&gt; from &gt;&gt; to &gt;&gt; weight;</span><br><span class="line">		edge.<span class="built_in">push_back</span>(&#123; from, to, weight &#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">auto</span> cmp = [](vector&lt;<span class="type">int</span>&gt;&amp; a, vector&lt;<span class="type">int</span>&gt;&amp; b) -&gt; <span class="type">bool</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a[<span class="number">2</span>] &lt; b[<span class="number">2</span>];</span><br><span class="line">		&#125;;</span><br><span class="line">	<span class="comment">// 根据权值排序</span></span><br><span class="line">	<span class="built_in">sort</span>(edge.<span class="built_in">begin</span>(), edge.<span class="built_in">end</span>(), cmp);</span><br><span class="line">	<span class="built_in">build</span>(N);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> e : edge) &#123;</span><br><span class="line">		<span class="type">int</span> from = e[<span class="number">0</span>], to = e[<span class="number">1</span>], w = e[<span class="number">2</span>];</span><br><span class="line">		<span class="comment">// 如果不成环 则合并</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">find</span>(from) != <span class="built_in">find</span>(to)) &#123;</span><br><span class="line">			_union(from, to, w);</span><br><span class="line">			cnt++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 如果成环 则跳过</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (cnt == N<span class="number">-1</span>) cout &lt;&lt; ans;</span><br><span class="line">	<span class="keyword">else</span> cout &lt;&lt; <span class="string">&quot;orz&quot;</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<h2 id="Prim算法模版"><a href="#Prim算法模版" class="headerlink" title="Prim算法模版"></a>Prim算法模版</h2><p>prim算法和Dijkstra算法十分类似</p>
+<p>过程如下：</p>
+<ol>
+<li>创建visited数组 初始设为false 即<code>vector&lt;bool&gt;visited(n, false);</code></li>
+<li>任取一个点 将这个点的所有边加入到小根堆中</li>
+<li>当小根堆不为空 则弹出元素<ol>
+<li>弹出元素若已访问过 则<code>continue</code></li>
+<li>弹出元素若未访问过 则<code>visited[cur] = true;</code> 这里可以计算最小生成树的权值 如<code>ans += weight</code></li>
+<li>处理各边 将各边加入到堆中</li>
+</ol>
+</li>
+<li>当小根堆为空 也就得到了最小生成树</li>
+</ol>
+<p>针对洛谷上的模版题（见前文）也可以使用prim算法进行计算</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;limits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;limits.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 建图</span></span><br><span class="line">    <span class="type">int</span> N, M;</span><br><span class="line">    cin &gt;&gt; N &gt;&gt; M;</span><br><span class="line">    vector&lt;vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&gt; <span class="built_in">graph</span>(N + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; M; ++i) &#123;</span><br><span class="line">        <span class="type">int</span> from, to, weight;</span><br><span class="line">        cin &gt;&gt; from &gt;&gt; to &gt;&gt; weight;</span><br><span class="line">        graph[from].<span class="built_in">push_back</span>(&#123; to, weight &#125;);</span><br><span class="line">        graph[to].<span class="built_in">push_back</span>(&#123; from, weight &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 开始 Prim 算法</span></span><br><span class="line">    <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">visited</span><span class="params">(N + <span class="number">1</span>, <span class="literal">false</span>)</span></span>;</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>, cnt = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">auto</span> cmp = [](vector&lt;<span class="type">int</span>&gt;&amp; a, vector&lt;<span class="type">int</span>&gt;&amp; b)-&gt; <span class="type">bool</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> a[<span class="number">1</span>] &gt; b[<span class="number">1</span>]; <span class="comment">// 使用小根堆</span></span><br><span class="line">        &#125;;</span><br><span class="line">    priority_queue&lt;vector&lt;<span class="type">int</span>&gt;, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;, <span class="keyword">decltype</span>(cmp)&gt; <span class="built_in">q</span>(cmp);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> i : graph[<span class="number">1</span>]) q.<span class="built_in">push</span>(i);</span><br><span class="line">    visited[<span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; cur = q.<span class="built_in">top</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="type">int</span> from = cur[<span class="number">0</span>], weight = cur[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (visited[from]) <span class="keyword">continue</span>;</span><br><span class="line">        visited[from] = <span class="literal">true</span>;</span><br><span class="line">        ans += weight; <span class="comment">// 累加当前边的权重</span></span><br><span class="line">        cnt++;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 处理各边</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> neighbor : graph[from]) &#123;</span><br><span class="line">            q.<span class="built_in">push</span>(neighbor);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查是否所有节点都被访问</span></span><br><span class="line">    <span class="keyword">if</span> (cnt == N) &#123;</span><br><span class="line">        cout &lt;&lt; ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;orz&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="时空复杂度分析"><a href="#时空复杂度分析" class="headerlink" title="时空复杂度分析"></a>时空复杂度分析</h2><p>kruskal算法：</p>
+<ul>
+<li>时间复杂度 <code>O(E * log E)</code></li>
+<li>空间复杂度 <code>O(V)</code></li>
+</ul>
+<p>prim算法</p>
+<ul>
+<li>时间复杂度 <code>O(E * log V)</code></li>
+<li>空间复杂度 <code>O(V)</code></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/09/23/%E5%B9%B6%E6%9F%A5%E9%9B%86%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="thetheOrange">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/09/23/%E5%B9%B6%E6%9F%A5%E9%9B%86%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8/" class="post-title-link" itemprop="url">并查集的原理和应用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-23 15:20:32" itemprop="dateCreated datePublished" datetime="2024-09-23T15:20:32+08:00">2024-09-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-30 11:20:28" itemprop="dateModified" datetime="2024-09-30T11:20:28+08:00">2024-09-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="1-结构实现"><a href="#1-结构实现" class="headerlink" title="1. 结构实现"></a>1. 结构实现</h2><p>并查集要实现三个方法：</p>
+<ol>
+<li><code>int find(int x);</code> 查找代表元素</li>
+<li><code>bool isSameSet(int x, int y);</code> 查看是否为同一集合</li>
+<li><code>void _union(int x, int y);</code> 合并集合</li>
+</ol>
+<p>而并查集的结构，我们可以使用数组（顺序表）进行存储。数组下标<code>i</code>表示每个节点，数组的值<code>father[i]</code>对应着这个节点的代表节点。</p>
+<p>对于<code>father</code>数组的初始化，我们有如下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里的n是节点总数</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) father[i] = i;</span><br></pre></td></tr></table></figure>
+
+<p>这样初始化，表示着每个节点一开始代表着自己。后期我们查找某个节点的代表节点的时候，只需依次跳转，直到<code>father[i] == i</code>就表示找到代表节点了</p>
+<p>接下来，我们依次来看前面三种方法的实现</p>
+<h3 id="1-1-find"><a href="#1-1-find" class="headerlink" title="1.1 find"></a>1.1 find</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x != father[x]) father[x] = <span class="built_in">find</span>(x);</span><br><span class="line">    <span class="keyword">return</span> father[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意，这里在每次的递归中<code>father[x] = find(x);</code>保证最后的<em>扁平化</em>，保证时间复杂度保持在常数级别。</p>
+<h3 id="1-2-isSameSet"><a href="#1-2-isSameSet" class="headerlink" title="1.2 isSameSet"></a>1.2 isSameSet</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isSameSet</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">find</span>(x) == <span class="built_in">find</span>(y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>查看代表元素是否相同，如果相同则表示在同一个集合中</p>
+<h3 id="1-3-union"><a href="#1-3-union" class="headerlink" title="1.3 _union"></a>1.3 _union</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> _union(<span class="type">int</span> x, <span class="type">int</span> y) &#123;</span><br><span class="line">    <span class="type">int</span> fx = <span class="built_in">find</span>(x), fy = <span class="built_in">find</span>(y);</span><br><span class="line">    <span class="comment">// 如果不是同一个集合 则进行合并</span></span><br><span class="line">    <span class="keyword">if</span> (fx != fy) &#123;</span><br><span class="line">        father[fx] = fy; <span class="comment">// 只需修改代表节点即可合并</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-具体案例"><a href="#2-具体案例" class="headerlink" title="2. 具体案例"></a>2. 具体案例</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/satisfiability-of-equality-equations/description/">990. 等式方程的可满足性</a></p>
+<blockquote>
+<p>给定一个由表示变量之间关系的字符串方程组成的数组，每个字符串方程 equations[i] 的长度为 4，并采用两种不同的形式之一：”a&#x3D;&#x3D;b” 或 “a!&#x3D;b”。在这里，a 和 b 是小写字母（不一定不同），表示单字母变量名。</p>
+<p>只有当可以将整数分配给变量名，以便满足所有给定的方程时才返回 true，否则返回 false。 </p>
+</blockquote>
+<p>这题我们可以将相等看作两个节点<strong>联通</strong>，或者说，这两个节点属于同一个集合。而不等式可以看作这两个节点不属于同一个节点。</p>
+<p>也就是说，我们使用并查集，先将等式的组合进行合并，再根据不等式中的字母元素，判断该元素是否同属一个节点。一旦出现矛盾，则返回<code>false</code></p>
+<p>解题代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        1. 对于所有的等式 可以看成合并操作</span></span><br><span class="line"><span class="comment">        2. 对应所有的不等式 看成这两个元素不在同一个集合中</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; father;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isEqual</span><span class="params">(string <span class="type">const</span>&amp; s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> s[<span class="number">1</span>] == <span class="string">&#x27;=&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (x != father[x]) father[x] = <span class="built_in">find</span>(father[x]);</span><br><span class="line">        <span class="keyword">return</span> father[x];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Union</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> fx = <span class="built_in">find</span>(x), fy = <span class="built_in">find</span>(y);</span><br><span class="line">        <span class="keyword">if</span> (fx != fy) &#123;</span><br><span class="line">            father[fx] = fy;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isSameSet</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">find</span>(x) == <span class="built_in">find</span>(y);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">equationsPossible</span><span class="params">(vector&lt;string&gt;&amp; equations)</span> </span>&#123;</span><br><span class="line">        father.<span class="built_in">assign</span>(<span class="number">26</span>, <span class="number">0</span>);  </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">char</span> i = <span class="string">&#x27;a&#x27;</span>; i &lt;= <span class="string">&#x27;z&#x27;</span>; ++i) father[i-<span class="string">&#x27;a&#x27;</span>] = i-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> s : equations) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">isEqual</span>(s)) <span class="built_in">Union</span>(s[<span class="number">0</span>]-<span class="string">&#x27;a&#x27;</span>, s.<span class="built_in">back</span>()-<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> s : equations) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="built_in">isEqual</span>(s)) <span class="keyword">if</span> (<span class="built_in">isSameSet</span>(s[<span class="number">0</span>]-<span class="string">&#x27;a&#x27;</span>, s.<span class="built_in">back</span>()-<span class="string">&#x27;a&#x27;</span>)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;; </span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -618,110 +888,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/09/10/git%20commit%E7%9A%84%E6%A0%87%E5%87%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="thetheOrange">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="thetheOrange的笔记">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | thetheOrange的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/09/10/git%20commit%E7%9A%84%E6%A0%87%E5%87%86/" class="post-title-link" itemprop="url">git commit message 标准</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-09-10 10:00:00 / 修改时间：10:10:13" itemprop="dateCreated datePublished" datetime="2024-09-10T10:00:00+08:00">2024-09-10</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>210</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h2><p><strong>type</strong> + 描述</p>
-<h2 id="type类型"><a href="#type类型" class="headerlink" title="type类型"></a>type类型</h2><ul>
-<li><strong>feat</strong> 新功能</li>
-<li>fix&#x2F;to <ul>
-<li>fix <strong>产生diff</strong>并自动修复问题。适合一次提交直接修复格式</li>
-<li>to <strong>只产生diff</strong>不自动修复此问题。适合于多次提交。最终修复问题提交时使用fix</li>
-</ul>
-</li>
-<li>docs 提交文档</li>
-<li>style 格式 不影响代码运行的变动 </li>
-<li>refactor 重构</li>
-<li>perf 优化</li>
-<li>test 测试 单元测试</li>
-<li>chore 构建过程或辅助工具的变动</li>
-<li>revert 回滚到上一个版本</li>
-<li>merge 代码合并</li>
-<li>sync 同步主线或分支的bug</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -743,13 +911,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">36k</span>
+    <span title="站点总字数">40k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:05</span>
+    <span title="站点阅读时长">1:12</span>
   </span>
 </div>
 <div class="busuanzi-count">

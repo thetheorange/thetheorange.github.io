@@ -18,10 +18,10 @@
   --btn-default-hover-bg: #fff;
   --btn-default-hover-color: #222;
   --btn-default-hover-border-color: #222;
-  --highlight-background: #fefefe;
+  --highlight-background: #ededed;
   --highlight-foreground: #545454;
-  --highlight-gutter-background: #ededed;
-  --highlight-gutter-foreground: #656565;
+  --highlight-gutter-background: #ddd;
+  --highlight-gutter-foreground: #636363;
   color-scheme: light;
 }
 html {
@@ -174,7 +174,7 @@ template {
 }
 ::selection {
   background: #262a30;
-  color: #eee;
+  color: #bbb;
 }
 html,
 body {
@@ -460,6 +460,45 @@ code.hljs {
     font-weight: bold
   }
 }
+.highlight:hover .copy-btn,
+.code-container:hover .copy-btn {
+  opacity: 1;
+}
+.code-container {
+  position: relative;
+}
+.copy-btn {
+  color: #333;
+  cursor: pointer;
+  line-height: 1.6;
+  opacity: 0;
+  padding: 2px 6px;
+  position: absolute;
+  transition: opacity 0.2s ease-in-out;
+  color: var(--highlight-foreground);
+  font-size: 14px;
+  right: 0;
+  top: 2px;
+}
+figure.highlight {
+  border-radius: 5px;
+  box-shadow: 0 10px 30px 0 rgba(0,0,0,0.4);
+  padding-top: 30px;
+}
+figure.highlight .table-container {
+  border-radius: 0 0 5px 5px;
+}
+figure.highlight::before {
+  background: #fc625d;
+  box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  left: 12px;
+  margin-top: -20px;
+  position: absolute;
+  border-radius: 50%;
+  content: ' ';
+  height: 12px;
+  width: 12px;
+}
 code,
 kbd,
 figure.highlight,
@@ -740,7 +779,7 @@ pre code {
   margin-bottom: 20px;
   padding: 1em;
   position: relative;
-  border: 1px solid #eee;
+  border: 1px solid #bbb;
   border-left-width: 5px;
 }
 .post-body .note summary {
@@ -954,7 +993,7 @@ pre code {
   color: var(--content-bg-color);
 }
 .pagination {
-  border-top: 1px solid #eee;
+  border-top: 1px solid #bbb;
   margin: 120px 0 0;
   text-align: center;
 }
@@ -962,7 +1001,7 @@ pre code {
 .pagination .next,
 .pagination .page-number {
   border-bottom: 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #bbb;
   transition: border-color 0.2s ease-in-out;
 }
 .pagination .prev:hover,
@@ -977,7 +1016,7 @@ pre code {
   .pagination .prev,
   .pagination .next,
   .pagination .page-number {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #bbb;
     border-top: 0;
   }
   .pagination .prev:hover,
@@ -1160,7 +1199,7 @@ pre code {
   margin-right: 8px;
 }
 .menu-item .badge {
-  background: #eee;
+  background: #bbb;
   border-radius: 0;
   color: #555;
   font-weight: bold;
@@ -1229,8 +1268,8 @@ pre code {
   color: #999;
 }
 .sidebar a:hover {
-  border-bottom-color: #eee;
-  color: #eee;
+  border-bottom-color: #bbb;
+  color: #bbb;
 }
 .links-of-author:not(:first-child) {
   margin-top: 15px;
@@ -1243,7 +1282,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #f6bd0b;
+  background: #4e49d4;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -1771,7 +1810,7 @@ pre code {
 }
 .posts-collapse .post-content .collection-year .collection-year-count {
   font-size: 0.75em;
-  background: #eee;
+  background: #bbb;
   border-radius: 0;
   color: #555;
   font-weight: bold;
@@ -2072,7 +2111,7 @@ pre code {
   display: none;
 }
 .post-nav {
-  border-top: 1px solid #eee;
+  border-top: 1px solid #bbb;
   display: flex;
   gap: 30px;
   justify-content: space-between;
@@ -2129,7 +2168,7 @@ pre code {
   margin-right: 10px;
 }
 .social-like {
-  border-top: 1px solid #eee;
+  border-top: 1px solid #bbb;
   font-size: 0.875em;
   margin-top: 1em;
   padding-top: 1em;
@@ -2203,7 +2242,7 @@ pre code {
 }
 .category-all-page .category-list-count {
   font-size: 0.75em;
-  background: #eee;
+  background: #bbb;
   border-radius: 0;
   color: #555;
   font-weight: bold;
@@ -2424,7 +2463,7 @@ ul.breadcrumb li:last-child {
   color: #222;
 }
 .search-popup .search-header {
-  background: #eee;
+  background: #bbb;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   display: flex;
@@ -2624,4 +2663,10 @@ header.header {
   .sidebar-active .footer-fixed {
     left: 320px;
   }
+}
+.table-container {
+  background-color: #fff;
+}
+.table-container .code pre {
+  background-color: #fff;
 }
