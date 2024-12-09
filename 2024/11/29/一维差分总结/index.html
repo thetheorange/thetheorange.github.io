@@ -27,7 +27,7 @@
 <meta property="og:description" content="适用情景如果要对数组的多个区间内的元素进行增减操作，可以考虑使用差分数组进行批量化操作。 思路一般思路差分数组实质上是前缀和数组的逆过程。 如果要对区间[l, r]内的元素加val，先求差分数组diff，diff数组大小为n+2, 可以避免讨论边界条件，其中diff数组内元素为原数组前后两个元素的差。接下来依次按如下过程操作：  diff[l+1] +&#x3D; val diff[r+2] -&amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-29T01:55:53.000Z">
-<meta property="article:modified_time" content="2024-11-29T07:10:41.353Z">
+<meta property="article:modified_time" content="2024-11-29T07:14:28.128Z">
 <meta property="article:author" content="thetheOrange">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -220,7 +220,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-11-29 09:55:53 / 修改时间：15:10:41" itemprop="dateCreated datePublished" datetime="2024-11-29T09:55:53+08:00">2024-11-29</time>
+      <time title="创建时间：2024-11-29 09:55:53 / 修改时间：15:14:28" itemprop="dateCreated datePublished" datetime="2024-11-29T09:55:53+08:00">2024-11-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -279,8 +279,8 @@
 
 <h3 id="等差数列的一维差分"><a href="#等差数列的一维差分" class="headerlink" title="等差数列的一维差分"></a>等差数列的一维差分</h3><p>这部分的思想是，对于某个区间内的元素，加上某个等差数列，例如，对某个区间<code>[1, 2, 3, 4]</code>，我们想让该区间的所有元素加上一个等差数列<code>an = 1 + (n - 1) * 1 = n</code>。换句话说，我们期待得到<code>[1+1, 2+2, 3+3, 4+4]</code>，即<code>[2, 4, 6, 8]</code>的结果。那么，我们可以从结果出发，进行推导。</p>
 <p>为了简单，假设这样一个数组<code>[0, 0, 0, 0, 0, 0, 0, 0]</code>，设变量<code>s</code>为首项，<code>d</code>为公差，<code>e</code>为末项。<code>[0, s, s+d, s+2d, s+3d, e, 0, 0]</code>是我们的期望。</p>
-<p>注意到，对<code>[0, s, d, d, d, d, -e, 0]</code>进行前缀和处理，能得到我们期望的结果。为了方便，我们将这个数组设为<code>arr1</code>。这时候，我们再想，是否有一个差分数组<code>arr2</code>，通过类似<code>diff[l+1] += val diff[r+2] -= val</code>的操作，经过前缀和处理，能得到<code>arr1</code>呢？</p>
-<p>这样的数组，是存在的。我们说，<em>差分数组实质上是前缀和数组的逆过程。</em>。那么，对于<code>arr1</code>的1号元素<code>s</code>，其实可以通过<code>0 + x = s</code>得到，这里的<code>x</code>是未知数，表示<code>arr2</code>第<code>i</code>号位置的数，这里的<code>i</code>为<code>1</code>。同理，对于<code>arr2</code>的2号元素<code>d</code>，可以通过<code>s + x = d</code>得到，求得<code>x = d - s</code>。同理，可以得到<code>arr2</code>其他位置上的元素。最后，求得<code>arr2 = [0, s, d - s, 0, 0, 0, -e-d, e]</code>。</p>
+<p>注意到，对<code>[0, s, d, d, d, d, -e, 0]</code>进行前缀和处理，能得到我们期望的结果。为了方便，我们将这个数组设为<code>arr1</code>。这时候，我们再想，是否有一个差分数组<code>arr2</code>，通过类似<code>diff[l+1] += val diff[r+2] -= val</code>的操作，经过前缀和处理，能得到<code>arr1</code>吗？</p>
+<p>这样的数组，是存在的。我们说，<em>差分数组实质上是前缀和数组的逆过程</em>。那么，对于<code>arr1</code>的1号元素<code>s</code>，其实可以通过<code>0 + x = s</code>得到，这里的<code>x</code>是未知数，表示<code>arr2</code>第<code>i</code>号位置的数，这里的<code>i</code>为<code>1</code>。同理，对于<code>arr2</code>的2号元素<code>d</code>，可以通过<code>s + x = d</code>得到，求得<code>x = d - s</code>。同理，可以得到<code>arr2</code>其他位置上的元素。最后，求得<code>arr2 = [0, s, d - s, 0, 0, 0, -e-d, e]</code>。</p>
 <p>也就是说，我们只需要求出<code>diff</code>差分数组，接着，按如下步骤操作：</p>
 <ol>
 <li>diff[l+1] +&#x3D; s</li>
@@ -329,6 +329,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2024/12/09/%E5%8D%95%E8%B0%83%E6%A0%88%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/" rel="next" title="单调栈基础用法">
+                  单调栈基础用法 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -359,13 +362,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">40k</span>
+    <span title="站点总字数">42k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:12</span>
+    <span title="站点阅读时长">1:16</span>
   </span>
 </div>
 <div class="busuanzi-count">

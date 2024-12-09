@@ -146,7 +146,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,112 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/12/09/%E5%8D%95%E8%B0%83%E6%A0%88%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="thetheOrange">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/12/09/%E5%8D%95%E8%B0%83%E6%A0%88%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/" class="post-title-link" itemprop="url">单调栈基础用法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-12-09 15:07:58 / 修改时间：15:34:45" itemprop="dateCreated datePublished" datetime="2024-12-09T15:07:58+08:00">2024-12-09</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><p>在一个一维数组中，对每个元素，寻找他的下一个或前一个<strong>最近的</strong>最大值或最小值的坐标或值。</p>
+<p>若不考虑单调栈，采用暴力方法，对每个元素，分别向左向右遍历，找到第一个满足条件的元素就<code>break</code>，即可求解。暴力的方法的时间复杂度是<code>O(n^2)</code>。</p>
+<p>单调栈维护一个单调递增或递减的栈，以寻找下一个最小值的坐标为例，即在栈里维护<strong>大压小</strong>的顺序。一般来说，使用单调栈右三个阶段：</p>
+<ol>
+<li>遍历阶段。遍历每一个元素，满足条件则入栈，不满足<strong>大压小</strong>的条件则弹出栈顶元素，每次弹出，则结算栈顶元素的答案。此时，使栈顶元素弹出的元素为，该栈顶元素的右答案，栈顶元素的下一个栈中元素为左答案。</li>
+<li>清算阶段。如果栈中有剩余元素，依次弹出，每个弹出的元素的右答案为<code>-1</code>，如果栈顶元素不是最后一个元素，则左答案为栈中下一个元素，否则，为<code>-1</code>。</li>
+<li>修正阶段。如果数组中出现重复的元素，则需要修正答案。除最后一个元素外，倒序对每一个元素的右答案进行修正。如果<code>nums[右答案]</code>和元素的值相同，则修正该答案为<code>ans[ans[i][1]][1]</code>，即右答案的右答案。</li>
+</ol>
+<p>因为每一个元素进出栈一次，所以时间复杂度为<code>O(n)</code>。</p>
+<p>注意，单调栈维护的顺序和题目条件有关，例如，如果要找前一个或下一个<strong>最近的</strong>最大值坐标。则需要维护<strong>小压大</strong>的顺序。</p>
+<h2 id="算法模版"><a href="#算法模版" class="headerlink" title="算法模版"></a>算法模版</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 1000001</span></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> nums[MAXN];</span><br><span class="line"><span class="type">static</span> <span class="type">int</span> stack[MAXN];</span><br><span class="line"><span class="type">static</span> <span class="type">int</span> ans[MAXN][<span class="number">2</span>];</span><br><span class="line"><span class="type">static</span> <span class="type">int</span> n, r;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    r = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> cur;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="comment">// 当栈不为空且入栈元素大于栈顶元素时</span></span><br><span class="line">        <span class="keyword">while</span> (r &gt; <span class="number">0</span> &amp;&amp; nums[stack[r<span class="number">-1</span>]] &gt;= nums[i]) &#123;</span><br><span class="line">            <span class="comment">// 弹出该元素，结算答案</span></span><br><span class="line">            cur = stack[--r];</span><br><span class="line">            <span class="comment">// 压在下面的元素为左答案，使其弹出的元素为右答案</span></span><br><span class="line">            ans[cur][<span class="number">0</span>] = r &gt; <span class="number">0</span> ? stack[r<span class="number">-1</span>] : <span class="number">-1</span>;</span><br><span class="line">            ans[cur][<span class="number">1</span>] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        stack[r++] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果栈中还有元素</span></span><br><span class="line">    <span class="keyword">while</span> (r &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        cur = stack[--r];</span><br><span class="line">        <span class="comment">// 此时右答案为-1 左答案为下一个元素</span></span><br><span class="line">        ans[cur][<span class="number">0</span>] = r &gt; <span class="number">0</span> ? stack[r<span class="number">-1</span>] : <span class="number">-1</span>;</span><br><span class="line">        ans[cur][<span class="number">1</span>] = <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 修正答案 最后一个元素可以不考虑，因为都为-1</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ans[i][<span class="number">1</span>] != <span class="number">-1</span> &amp;&amp; nums[ans[i][<span class="number">1</span>]] == nums[i]) &#123;</span><br><span class="line">            ans[i][<span class="number">1</span>] = ans[ans[i][<span class="number">1</span>]][<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 输出</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        cout &lt;&lt; ans[i][<span class="number">0</span>] &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; ans[i][<span class="number">1</span>] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="例题分析"><a href="#例题分析" class="headerlink" title="例题分析"></a>例题分析</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/next-greater-element-i/description/">496. 下一个更大元素 I</a></p>
+<blockquote>
+<p><code>nums1</code> 中数字 <code>x</code> 的 下一个更大元素 是指 <code>x</code> 在 <code>nums2</code> 中对应位置 右侧 的 第一个 比 <code>x</code> 大的元素。</p>
+<p>给你两个 没有重复元素 的数组 <code>nums1</code> 和 <code>nums2</code> ，下标从 <code>0</code> 开始计数，其中<code>nums1</code> 是 <code>nums2</code> 的子集。</p>
+<p>对于每个 <code>0 &lt;= i &lt; nums1.length</code> ，找出满足 <code>nums1[i] == nums2[j]</code> 的下标 <code>j</code> ，并且在 <code>nums2</code> 确定 <code>nums2[j]</code> 的 下一个更大元素 。如果不存在下一个更大元素，那么本次查询的答案是 <code>-1</code> 。</p>
+<p>返回一个长度为 <code>nums1.length</code> 的数组 <code>ans</code> 作为答案，满足 <code>ans[i]</code> 是如上所述的 下一个更大元素 。</p>
+</blockquote>
+<p>对于<code>nums2</code>，可以先求出每一个元素的下一个最大元素的位置，然后我们对<code>nums2</code>的值和下标做一个映射，为了方便查找<code>nums1</code>中值对应的位置。</p>
+<p>求出每一个元素的下一个最大元素位置的过程，可以考虑使用单调栈。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> stk[<span class="number">1001</span>];</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">nextGreaterElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums1, vector&lt;<span class="type">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; m;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums<span class="number">2.</span><span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">            m[nums2[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> n1 = nums<span class="number">1.</span><span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(n1, <span class="number">-1</span>)</span></span>;    </span><br><span class="line">        <span class="type">int</span> r = <span class="number">0</span>, n2 = nums<span class="number">2.</span><span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">next</span><span class="params">(n2, <span class="number">-1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n2; ++i) &#123;</span><br><span class="line">            <span class="keyword">while</span> (r &gt; <span class="number">0</span> &amp;&amp; nums2[i] &gt; nums2[stk[r<span class="number">-1</span>]]) &#123;</span><br><span class="line">                <span class="type">int</span> cur = stk[--r];</span><br><span class="line">                next[cur] = nums2[i];</span><br><span class="line">            &#125;</span><br><span class="line">            stk[r++] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n1; ++i) &#123;</span><br><span class="line">            <span class="type">int</span> pos = m[nums1[i]];</span><br><span class="line">            ans[i] = next[pos];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -213,7 +319,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-11-29 09:55:53 / 修改时间：15:10:41" itemprop="dateCreated datePublished" datetime="2024-11-29T09:55:53+08:00">2024-11-29</time>
+      <time title="创建时间：2024-11-29 09:55:53 / 修改时间：15:14:28" itemprop="dateCreated datePublished" datetime="2024-11-29T09:55:53+08:00">2024-11-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -266,8 +372,8 @@
 
 <h3 id="等差数列的一维差分"><a href="#等差数列的一维差分" class="headerlink" title="等差数列的一维差分"></a>等差数列的一维差分</h3><p>这部分的思想是，对于某个区间内的元素，加上某个等差数列，例如，对某个区间<code>[1, 2, 3, 4]</code>，我们想让该区间的所有元素加上一个等差数列<code>an = 1 + (n - 1) * 1 = n</code>。换句话说，我们期待得到<code>[1+1, 2+2, 3+3, 4+4]</code>，即<code>[2, 4, 6, 8]</code>的结果。那么，我们可以从结果出发，进行推导。</p>
 <p>为了简单，假设这样一个数组<code>[0, 0, 0, 0, 0, 0, 0, 0]</code>，设变量<code>s</code>为首项，<code>d</code>为公差，<code>e</code>为末项。<code>[0, s, s+d, s+2d, s+3d, e, 0, 0]</code>是我们的期望。</p>
-<p>注意到，对<code>[0, s, d, d, d, d, -e, 0]</code>进行前缀和处理，能得到我们期望的结果。为了方便，我们将这个数组设为<code>arr1</code>。这时候，我们再想，是否有一个差分数组<code>arr2</code>，通过类似<code>diff[l+1] += val diff[r+2] -= val</code>的操作，经过前缀和处理，能得到<code>arr1</code>呢？</p>
-<p>这样的数组，是存在的。我们说，<em>差分数组实质上是前缀和数组的逆过程。</em>。那么，对于<code>arr1</code>的1号元素<code>s</code>，其实可以通过<code>0 + x = s</code>得到，这里的<code>x</code>是未知数，表示<code>arr2</code>第<code>i</code>号位置的数，这里的<code>i</code>为<code>1</code>。同理，对于<code>arr2</code>的2号元素<code>d</code>，可以通过<code>s + x = d</code>得到，求得<code>x = d - s</code>。同理，可以得到<code>arr2</code>其他位置上的元素。最后，求得<code>arr2 = [0, s, d - s, 0, 0, 0, -e-d, e]</code>。</p>
+<p>注意到，对<code>[0, s, d, d, d, d, -e, 0]</code>进行前缀和处理，能得到我们期望的结果。为了方便，我们将这个数组设为<code>arr1</code>。这时候，我们再想，是否有一个差分数组<code>arr2</code>，通过类似<code>diff[l+1] += val diff[r+2] -= val</code>的操作，经过前缀和处理，能得到<code>arr1</code>吗？</p>
+<p>这样的数组，是存在的。我们说，<em>差分数组实质上是前缀和数组的逆过程</em>。那么，对于<code>arr1</code>的1号元素<code>s</code>，其实可以通过<code>0 + x = s</code>得到，这里的<code>x</code>是未知数，表示<code>arr2</code>第<code>i</code>号位置的数，这里的<code>i</code>为<code>1</code>。同理，对于<code>arr2</code>的2号元素<code>d</code>，可以通过<code>s + x = d</code>得到，求得<code>x = d - s</code>。同理，可以得到<code>arr2</code>其他位置上的元素。最后，求得<code>arr2 = [0, s, d - s, 0, 0, 0, -e-d, e]</code>。</p>
 <p>也就是说，我们只需要求出<code>diff</code>差分数组，接着，按如下步骤操作：</p>
 <ol>
 <li>diff[l+1] +&#x3D; s</li>
@@ -642,119 +748,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/11/06/%E5%B5%8C%E5%A5%97%E7%B1%BB%E9%80%92%E5%BD%92%E6%A8%A1%E7%89%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="thetheOrange">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="thetheOrange的笔记">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | thetheOrange的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/11/06/%E5%B5%8C%E5%A5%97%E7%B1%BB%E9%80%92%E5%BD%92%E6%A8%A1%E7%89%88/" class="post-title-link" itemprop="url">嵌套类递归模版</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-11-06 22:05:39 / 修改时间：22:38:09" itemprop="dateCreated datePublished" datetime="2024-11-06T22:05:39+08:00">2024-11-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%80%92%E5%BD%92/" itemprop="url" rel="index"><span itemprop="name">递归</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><ol>
-<li>定义全局变量 <code>where</code></li>
-<li>递归函数f(i) 从i位置出发，遇到<code>字符串终止</code>或者<code>嵌套条件终止</code>就返回</li>
-<li>返回值是f(i) 负责的这一段结果</li>
-<li>f(i)在返回前更新<code>where</code>，目的是让上级函数通过<code>where</code>知道解析到了什么位置，进而继续</li>
-</ol>
-<h2 id="例题分析"><a href="#例题分析" class="headerlink" title="例题分析"></a>例题分析</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/decode-string/description/">394. 字符串解码</a></p>
-<blockquote>
-<p>给定一个经过编码的字符串，返回它解码后的字符串。</p>
-<p>编码规则为: k[encoded_string]，表示其中方括号内部的 encoded_string 正好重复 k 次。注意 k 保证为正整数。</p>
-<p>你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。</p>
-<p>此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 k ，例如不会出现像 3a 或 2[4] 的输入。</p>
-</blockquote>
-<p>字符串中一共会出现四种情况：1.数字 2.字母 3.左括号 4.右括号</p>
-<p>遇到数字和字母，我们可以记录下来。遇到左括号，说明我们进入到了一个嵌套，需要重复括号内的字符串，直到i扫描到右括号。</p>
-<p>这个时候，上游的函数就可以接收下游函数传递的嵌套结果，进而通过数字进行重复。</p>
-<p>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> where = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重复字符串</span></span><br><span class="line"><span class="function">string <span class="title">repeat</span><span class="params">(<span class="type">int</span> times, string s)</span> </span>&#123;</span><br><span class="line">	string res;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; times; ++i) &#123;</span><br><span class="line">		res += s;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">f</span><span class="params">(<span class="type">int</span> i, string s)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> d = <span class="number">0</span>; <span class="comment">// 用于记录数字</span></span><br><span class="line">	string path; <span class="comment">// 用于记录子串</span></span><br><span class="line">	<span class="keyword">while</span> (i &lt; s.<span class="built_in">size</span>() &amp;&amp; s[i] != <span class="string">&#x27;]&#x27;</span>) &#123;</span><br><span class="line">		<span class="comment">// 遇到数字</span></span><br><span class="line">		<span class="keyword">if</span> (s[i] &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; s[i] &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;</span><br><span class="line">			d = d * <span class="number">10</span> + (s[i++] - <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 遇到字母</span></span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (s[i] &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; s[i] &lt;= <span class="string">&#x27;z&#x27;</span>) &#123;</span><br><span class="line">			path.<span class="built_in">push_back</span>(s[i++]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 遇到左括号</span></span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			path += <span class="built_in">repeat</span>(d, <span class="built_in">f</span>(i + <span class="number">1</span>, s));</span><br><span class="line">			i = where + <span class="number">1</span>;</span><br><span class="line">			d = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 把当前的位置传给上游函数</span></span><br><span class="line">	where = i;</span><br><span class="line">	<span class="keyword">return</span> path;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>本文整理自左神的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1JP411p7KG/?spm_id_from=333.999.0.0&vd_source=1975c316afe56823772171b01ff0e77f">算法讲解039【必备】嵌套类问题的递归解题套路</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -778,13 +771,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">40k</span>
+    <span title="站点总字数">42k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:12</span>
+    <span title="站点阅读时长">1:16</span>
   </span>
 </div>
 <div class="busuanzi-count">
