@@ -146,7 +146,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,121 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/10/11/%E5%AD%97%E5%85%B8%E6%A0%91%E7%9A%84%E6%9E%84%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="thetheOrange">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | thetheOrange的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/10/11/%E5%AD%97%E5%85%B8%E6%A0%91%E7%9A%84%E6%9E%84%E5%BB%BA/" class="post-title-link" itemprop="url">字典树的定义和代码模版</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-10-11 15:04:13 / 修改时间：16:31:32" itemprop="dateCreated datePublished" datetime="2024-10-11T15:04:13+08:00">2024-10-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="字典树的定义和使用场景"><a href="#字典树的定义和使用场景" class="headerlink" title="字典树的定义和使用场景"></a>字典树的定义和使用场景</h2><ul>
+<li>定义</li>
+</ul>
+<blockquote>
+<p>每个样本，从头结点开始，根据字符或者前缀数字构建出来的树，称之为前缀树</p>
+</blockquote>
+<p><img src="/../images/trie.png" alt="字典树"></p>
+<ul>
+<li>使用场景</li>
+</ul>
+<blockquote>
+<p>当需要根据前缀信息查询时，可以使用字典树</p>
+</blockquote>
+<h2 id="字典树的实现"><a href="#字典树的实现" class="headerlink" title="字典树的实现"></a>字典树的实现</h2><h3 id="用类描述"><a href="#用类描述" class="headerlink" title="用类描述"></a>用类描述</h3><p>最经典的描述，但是对于字符种类过多的情况，难以处理</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">TREENODE</span> &#123;</span><br><span class="line">	<span class="type">int</span> pass;</span><br><span class="line">	<span class="type">int</span> end;</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">TREENODE</span>* next[<span class="number">26</span>] = &#123;&#125;;</span><br><span class="line">	<span class="built_in">TREENODE</span>() : <span class="built_in">pass</span>(<span class="number">0</span>), <span class="built_in">end</span>(<span class="number">0</span>) &#123;&#125;;</span><br><span class="line">&#125;TreeNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	TreeNode* root = <span class="literal">nullptr</span>;</span><br><span class="line">	<span class="built_in">Trie</span>() &#123;</span><br><span class="line">		root = <span class="keyword">new</span> <span class="built_in">TreeNode</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 插入word</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">		TreeNode* node = root;</span><br><span class="line">		node-&gt;pass++;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> c : word) &#123;</span><br><span class="line">			<span class="type">int</span> path = c - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">			<span class="comment">// 如果路径为空 则添加路径</span></span><br><span class="line">			<span class="keyword">if</span> (!node-&gt;next[path]) &#123;</span><br><span class="line">				node-&gt;next[path] = <span class="keyword">new</span> <span class="built_in">TreeNode</span>();</span><br><span class="line">			&#125;</span><br><span class="line">			node = node-&gt;next[path];</span><br><span class="line">			node-&gt;pass++;</span><br><span class="line">		&#125;</span><br><span class="line">		node-&gt;end++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 查询word个数</span></span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">countWord</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">		TreeNode* node = root;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> c : word) &#123;</span><br><span class="line">			<span class="type">int</span> path = c - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">			<span class="comment">// 如果路径为空 则说明不存在这个word</span></span><br><span class="line">			<span class="keyword">if</span> (!node-&gt;next[path]) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			node = node-&gt;next[path];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> node-&gt;end;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 查询前缀</span></span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">countPrefix</span><span class="params">(string prefix)</span> </span>&#123;</span><br><span class="line">		TreeNode* node = root;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> c : prefix) &#123;</span><br><span class="line">			<span class="type">int</span> path = c - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">			<span class="comment">// 如果路径为空 则说明不存在这个prefix</span></span><br><span class="line">			<span class="keyword">if</span> (!node-&gt;next[path]) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			node = node-&gt;next[path];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> node-&gt;pass;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 删除word</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">erase</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 先判断是否存在这个word</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">countWord</span>(word) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			TreeNode* node = root;</span><br><span class="line">			node-&gt;pass--;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">auto</span> c : word) &#123;</span><br><span class="line">				<span class="type">int</span> path = c - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">				<span class="keyword">if</span> (--node-&gt;next[path]-&gt;pass == <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="comment">// delete 后面的节点</span></span><br><span class="line">					node-&gt;next[path] = <span class="literal">nullptr</span>;</span><br><span class="line">					<span class="keyword">return</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				node = node-&gt;next[path];</span><br><span class="line">			&#125;</span><br><span class="line">			node-&gt;end--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="哈希表-类-实现"><a href="#哈希表-类-实现" class="headerlink" title="哈希表+类 实现"></a>哈希表+类 实现</h3><p>使用哈希表进行了优化，可以处理字符种类多的情况，但是依旧浪费大量的空间</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">TREENODE</span> &#123;</span><br><span class="line">	<span class="type">int</span> pass;</span><br><span class="line">	<span class="type">int</span> end;</span><br><span class="line">	unordered_map&lt;<span class="type">char</span>, <span class="keyword">struct</span> TREENODE*&gt; next;</span><br><span class="line">	<span class="built_in">TREENODE</span>() : <span class="built_in">pass</span>(<span class="number">0</span>), <span class="built_in">end</span>(<span class="number">0</span>) &#123;&#125;;</span><br><span class="line">&#125;TreeNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	TreeNode* root = <span class="literal">nullptr</span>;</span><br><span class="line">	<span class="built_in">Trie</span>() &#123;</span><br><span class="line">		root = <span class="keyword">new</span> <span class="built_in">TreeNode</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 插入word</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">		TreeNode* node = root;</span><br><span class="line">		node-&gt;pass++;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> c : word) &#123;</span><br><span class="line">			<span class="comment">// 如果c不存在路径中 则新建一条路径</span></span><br><span class="line">			<span class="keyword">if</span> (node-&gt;next.<span class="built_in">count</span>(c) == <span class="number">0</span>) &#123;</span><br><span class="line">				node-&gt;next[c] = <span class="keyword">new</span> <span class="built_in">TreeNode</span>();</span><br><span class="line">			&#125;</span><br><span class="line">			node = node-&gt;next[c];</span><br><span class="line">			node-&gt;pass++;</span><br><span class="line">		&#125;</span><br><span class="line">		node-&gt;end++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 查询word个数</span></span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">countWord</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">		TreeNode* node = root;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> c : word) &#123;</span><br><span class="line">			<span class="keyword">if</span> (node-&gt;next.<span class="built_in">count</span>(c) == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			node = node-&gt;next[c];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> node-&gt;end;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 查询前缀</span></span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">countPrefix</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">		TreeNode* node = root;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> c : word) &#123;</span><br><span class="line">			<span class="keyword">if</span> (node-&gt;next.<span class="built_in">count</span>(c) == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			node = node-&gt;next[c];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> node-&gt;pass;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 删除word</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">erase</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">countWord</span>(word) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			TreeNode* node = root;</span><br><span class="line">			node-&gt;pass--;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">auto</span> c : word) &#123;</span><br><span class="line">				<span class="keyword">if</span> (--node-&gt;next[c]-&gt;pass == <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="comment">// delete 节点</span></span><br><span class="line">					node-&gt;next.<span class="built_in">erase</span>(c);</span><br><span class="line">					<span class="keyword">return</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				node = node-&gt;next[c];</span><br><span class="line">			&#125;</span><br><span class="line">			node-&gt;end--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="用静态数组实现"><a href="#用静态数组实现" class="headerlink" title="用静态数组实现"></a>用静态数组实现</h3><p>使用静态数组对空间进行了优化，这样无论是多大数据，都可以只申请一次确定空间，进行查询</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX 1000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="type">int</span> nexts[MAX][<span class="number">26</span>] = &#123; &#123;<span class="number">0</span>&#125; &#125;;</span><br><span class="line">	<span class="type">int</span> pass[MAX] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">	<span class="type">int</span> end[MAX] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">	<span class="type">int</span> cnt = <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">Trie</span>() &#123;</span><br><span class="line">		cnt = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 插入word</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">		<span class="type">int</span> cur = <span class="number">1</span>;</span><br><span class="line">		pass[cur]++;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> c : word) &#123;</span><br><span class="line">			<span class="comment">// 如果c不存在路径中 则新建一条路径</span></span><br><span class="line">			<span class="type">int</span> path = c - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">			<span class="keyword">if</span> (nexts[cur][path] == <span class="number">0</span>) &#123;</span><br><span class="line">				nexts[cur][path] = ++cnt;</span><br><span class="line">			&#125;</span><br><span class="line">			cur = nexts[cur][path];</span><br><span class="line">			pass[cur]++;</span><br><span class="line">		&#125;</span><br><span class="line">		end[cur]++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 查询word个数</span></span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">countWord</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">		<span class="type">int</span> cur = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> c : word) &#123;</span><br><span class="line">			<span class="type">int</span> path = c - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">			<span class="keyword">if</span> (nexts[cur][path] == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			cur = nexts[cur][path];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> end[cur];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 查询前缀</span></span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">countPrefix</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">		<span class="type">int</span> cur = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> c : word) &#123;</span><br><span class="line">			<span class="type">int</span> path = c - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">			<span class="keyword">if</span> (nexts[cur][path] == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			cur = nexts[cur][path];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> pass[cur];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 删除word</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">erase</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">countWord</span>(word) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="type">int</span> cur = <span class="number">1</span>;</span><br><span class="line">			pass[cur]--;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">auto</span> c : word) &#123;</span><br><span class="line">				<span class="type">int</span> path = c - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">				<span class="keyword">if</span> (--pass[nexts[cur][path]] == <span class="number">0</span>) &#123;</span><br><span class="line">					nexts[cur][path] = <span class="number">0</span>;</span><br><span class="line">					<span class="keyword">return</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				cur = nexts[cur][path];</span><br><span class="line">			&#125;</span><br><span class="line">			end[cur]--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -670,202 +785,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://thetheorange.github.io/2024/09/27/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91-AVL%E6%A0%91-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="thetheOrange">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="thetheOrange的笔记">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | thetheOrange的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/09/27/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91-AVL%E6%A0%91-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">平衡二叉树(AVL树)与二叉搜索树</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-09-27 09:53:12" itemprop="dateCreated datePublished" datetime="2024-09-27T09:53:12+08:00">2024-09-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-11 16:33:11" itemprop="dateModified" datetime="2024-10-11T16:33:11+08:00">2024-10-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E4%BA%8C%E5%8F%89%E6%A0%91/" itemprop="url" rel="index"><span itemprop="name">二叉树</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>4.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>7 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="二叉搜索树-二叉排序树定义"><a href="#二叉搜索树-二叉排序树定义" class="headerlink" title="二叉搜索树&#x2F;二叉排序树定义"></a>二叉搜索树&#x2F;二叉排序树定义</h2><p>满足以下特征的二叉树，即为二叉搜索树：</p>
-<ol>
-<li>若左子树非空，则左子树上的所有节点要小于根节点</li>
-<li>若右子树非空，则右子树上的所有节点要大于根节点</li>
-<li>所有子结构满足上面两个条件</li>
-</ol>
-<h2 id="平衡二叉树的定义"><a href="#平衡二叉树的定义" class="headerlink" title="平衡二叉树的定义"></a>平衡二叉树的定义</h2><p>平衡二叉树，满足以下特征：</p>
-<ol>
-<li>左右子树的高度差不超过1</li>
-<li>所有子结构满足条件1</li>
-</ol>
-<h2 id="使用平衡二叉树优化二叉搜索树"><a href="#使用平衡二叉树优化二叉搜索树" class="headerlink" title="使用平衡二叉树优化二叉搜索树"></a>使用平衡二叉树优化二叉搜索树</h2><p>二叉搜索树在理想情况下查找效率是<code>O(logn)</code>的，但是在最坏情况下是<code>O(n)</code>的，比如下面这种情况:</p>
-<p><img src="/../images/bst.png" alt="二叉搜索树"></p>
-<p>但如果将这个二叉搜索树变为平衡二叉树，效率会得到大大提高，如下图：</p>
-<p><img src="/../images/per_bst.png" alt="优化后的二叉搜索树"></p>
-<h2 id="左旋和右旋"><a href="#左旋和右旋" class="headerlink" title="左旋和右旋"></a>左旋和右旋</h2><p>左旋和右旋是调整二叉树为平衡二叉树的两大“武器”</p>
-<h3 id="左旋"><a href="#左旋" class="headerlink" title="左旋"></a>左旋</h3><ul>
-<li>适用范围</li>
-</ul>
-<p>当最小失衡二叉树出现以下情况时，可以使用<strong>左旋</strong>进行调整</p>
-<p><img src="/../images/left_rotate.png" alt="可以左旋的情况"></p>
-<p>基本的步骤是：</p>
-<ol>
-<li>将<code>old_root</code>的右孩子<code>new_root</code>作为新的根节点</li>
-<li>如果<code>new_root</code>有左孩子，则将这个左孩子当做<code>old_root</code>的右孩子</li>
-<li>将<code>new_root</code>的做左孩子设为<code>old_root</code></li>
-</ol>
-<ul>
-<li>模版代码</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 左旋</span></span><br><span class="line"><span class="function">Node* <span class="title">leftRotate</span><span class="params">(Node* root)</span> </span>&#123;</span><br><span class="line">	Node* newRoot = root-&gt;right;</span><br><span class="line">	Node* tmp = newRoot-&gt;left;</span><br><span class="line"></span><br><span class="line">	root-&gt;right = tmp;</span><br><span class="line">	newRoot-&gt;left = root;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 更新高度</span></span><br><span class="line">	root-&gt;height = <span class="number">1</span> + <span class="built_in">max</span>(<span class="built_in">getHeight</span>(root-&gt;left), <span class="built_in">getHeight</span>(root-&gt;right));</span><br><span class="line">	newRoot-&gt;height = <span class="number">1</span> + <span class="built_in">max</span>(<span class="built_in">getHeight</span>(root), <span class="built_in">getHeight</span>(newRoot-&gt;right));</span><br><span class="line">	<span class="keyword">return</span> newRoot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="右旋"><a href="#右旋" class="headerlink" title="右旋"></a>右旋</h3><ul>
-<li>适用范围</li>
-</ul>
-<p>当最小失衡二叉树出现以下情况时，可以使用<strong>右旋</strong>进行调整</p>
-<p><img src="/../images/right_rotate.png" alt="可以右旋的情况"></p>
-<p>基本的步骤是：</p>
-<ol>
-<li>将<code>old_root</code>的左孩子<code>new_root</code>作为新的根节点</li>
-<li>如果<code>new_root</code>有右孩子，则将这个右孩子当做<code>old_root</code>的左孩子</li>
-<li>将<code>new_root</code>的右孩子设为<code>old_root</code></li>
-</ol>
-<ul>
-<li>模版代码</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 右旋</span></span><br><span class="line"><span class="function">Node* <span class="title">rightRotate</span><span class="params">(Node* root)</span> </span>&#123;</span><br><span class="line">	Node* newRoot = root-&gt;left;</span><br><span class="line">	Node* tmp = newRoot-&gt;right;</span><br><span class="line"></span><br><span class="line">	root-&gt;left = tmp;</span><br><span class="line">	newRoot-&gt;right = root;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 更新高度</span></span><br><span class="line">	root-&gt;height = <span class="number">1</span> + <span class="built_in">max</span>(<span class="built_in">getHeight</span>(root-&gt;left), <span class="built_in">getHeight</span>(root-&gt;right));</span><br><span class="line">	newRoot-&gt;height = <span class="number">1</span> + <span class="built_in">max</span>(<span class="built_in">getHeight</span>(newRoot-&gt;left), <span class="built_in">getHeight</span>(root));</span><br><span class="line">	<span class="keyword">return</span> newRoot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="四种类型"><a href="#四种类型" class="headerlink" title="四种类型"></a>四种类型</h2><h3 id="LL"><a href="#LL" class="headerlink" title="LL"></a>LL</h3><p>LL类型情况如下：</p>
-<p><img src="/../images/LL.png" alt="LL类型"></p>
-<p>判断条件：</p>
-<ol>
-<li><code>old_root</code>的平衡因子<strong>大于</strong>1</li>
-<li><code>new_root</code>的平衡因子<strong>大于</strong>0</li>
-</ol>
-<p>只需对<code>old_root</code>进行右旋即可</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">getBalance</span>(root) &gt; <span class="number">1</span> &amp;&amp; <span class="built_in">getBalance</span>(root-&gt;left) &gt; <span class="number">0</span>) <span class="keyword">return</span> <span class="built_in">leftRotate</span>(root);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="LR"><a href="#LR" class="headerlink" title="LR"></a>LR</h3><p>LR类型情况如下:</p>
-<p><img src="/../images/LR.png" alt="LR类型"></p>
-<p>判断条件：</p>
-<ol>
-<li><code>old_root</code>的平衡因子<strong>大于</strong>1</li>
-<li><code>new_root</code>的平衡因子<strong>小于</strong>0</li>
-</ol>
-<p>操作步骤：</p>
-<ol>
-<li>先对<code>new_root</code>进行<em>左旋</em></li>
-<li>再对<code>old_root</code>进行<em>右旋</em></li>
-</ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">getBalance</span>(root) &gt; <span class="number">1</span> &amp;&amp; <span class="built_in">getBalance</span>(root-&gt;left) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">	root-&gt;left = <span class="built_in">leftRotate</span>(root-&gt;right);</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">rightRotate</span>(root);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="RR"><a href="#RR" class="headerlink" title="RR"></a>RR</h3><p>RR类型情况如下：</p>
-<p><img src="/../images/RR.png" alt="RR类型"></p>
-<p>判断条件：</p>
-<ol>
-<li><code>old_root</code>的平衡因子<strong>小于</strong>-1</li>
-<li><code>new_root</code>的平衡因子<strong>小于</strong>0</li>
-</ol>
-<p>只需对<code>old_root</code>进行左旋即可</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">getBalance</span>(root) &lt; <span class="number">-1</span> &amp;&amp; <span class="built_in">getBalance</span>(root-&gt;right) &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="built_in">rightRotate</span>(root);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="RL"><a href="#RL" class="headerlink" title="RL"></a>RL</h3><p>RL类型情况如下：</p>
-<p><img src="/../images/RL.png" alt="RL类型"></p>
-<p>判断条件：</p>
-<ol>
-<li><code>old_root</code>的平衡因子<strong>小于</strong>-1</li>
-<li><code>new_root</code>的平衡因子<strong>大于</strong>0</li>
-</ol>
-<p>操作步骤：</p>
-<ol>
-<li>先对<code>new_root</code>进行<em>右旋</em></li>
-<li>再对<code>old_root</code>进行<em>左旋</em></li>
-</ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">getBalance</span>(root) &lt; <span class="number">-1</span> &amp;&amp; <span class="built_in">getBalance</span>(root-&gt;left) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">	root-&gt;right = <span class="built_in">rightRotate</span>(root-&gt;right);</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">leftRotate</span>(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 插入节点</span></span><br><span class="line"><span class="function">Node* <span class="title">insert</span><span class="params">(Node* root, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Node</span>(val);</span><br><span class="line">	<span class="keyword">if</span> (val &gt; root-&gt;val) &#123;</span><br><span class="line">		root-&gt;right = <span class="built_in">insert</span>(root-&gt;right, val);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (val &lt; root-&gt;val) &#123;</span><br><span class="line">		root-&gt;left = <span class="built_in">insert</span>(root-&gt;left, val);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> root;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 更新高度</span></span><br><span class="line">	root-&gt;height = <span class="number">1</span> + <span class="built_in">max</span>(<span class="built_in">getHeight</span>(root-&gt;left), <span class="built_in">getHeight</span>(root-&gt;right));</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 平衡性调整</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">getBalance</span>(root) &lt; <span class="number">-1</span>) &#123;</span><br><span class="line">		<span class="comment">// RL</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">getBalance</span>(root-&gt;right) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			root-&gt;right = <span class="built_in">rightRotate</span>(root-&gt;right);</span><br><span class="line">			<span class="keyword">return</span> <span class="built_in">leftRotate</span>(root);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// RR</span></span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="built_in">leftRotate</span>(root);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">getBalance</span>(root) &gt; <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="comment">// LR</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">getBalance</span>(root-&gt;left) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			root-&gt;left = <span class="built_in">leftRotate</span>(root-&gt;left);</span><br><span class="line">			<span class="keyword">return</span> <span class="built_in">rightRotate</span>(root);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// LL</span></span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="built_in">rightRotate</span>(root);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 删除节点</span></span><br><span class="line"><span class="function">Node* <span class="title">delete_node</span><span class="params">(Node* root, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!root) <span class="keyword">return</span> root;</span><br><span class="line">	<span class="keyword">if</span> (root-&gt;val == val) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!root-&gt;left &amp;&amp; !root-&gt;right) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (root-&gt;left &amp;&amp; !root-&gt;right) &#123;</span><br><span class="line">			<span class="keyword">return</span> root-&gt;left;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (!root-&gt;left &amp;&amp; root-&gt;right) &#123;</span><br><span class="line">			<span class="keyword">return</span> root-&gt;right;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			Node* tmp = root-&gt;right;</span><br><span class="line">			<span class="keyword">while</span> (tmp-&gt;left) tmp = tmp-&gt;left;</span><br><span class="line">			tmp-&gt;left = root-&gt;left;</span><br><span class="line">			<span class="keyword">return</span> root-&gt;right;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (val &gt; root-&gt;val) root-&gt;right = <span class="built_in">delete_node</span>(root-&gt;right, val);</span><br><span class="line">	<span class="keyword">if</span> (val &lt; root-&gt;val) root-&gt;left = <span class="built_in">delete_node</span>(root-&gt;left, val);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 更新树高</span></span><br><span class="line">	root-&gt;height = <span class="number">1</span> + <span class="built_in">max</span>(<span class="built_in">getHeight</span>(root-&gt;left), <span class="built_in">getHeight</span>(root-&gt;right));</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 调整二叉树</span></span><br><span class="line">	<span class="comment">// LL</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">getBalance</span>(root) &gt; <span class="number">1</span> &amp;&amp; <span class="built_in">getBalance</span>(root-&gt;left) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">rightRotate</span>(root);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// LR</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">getBalance</span>(root) &gt; <span class="number">1</span> &amp;&amp; <span class="built_in">getBalance</span>(root-&gt;left) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">		root-&gt;left = <span class="built_in">leftRotate</span>(root-&gt;left);</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">rightRotate</span>(root);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// RR</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">getBalance</span>(root) &lt; <span class="number">-1</span> &amp;&amp; <span class="built_in">getBalance</span>(root-&gt;right) &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">leftRotate</span>(root);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// RL</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">getBalance</span>(root) &lt; <span class="number">-1</span> &amp;&amp; <span class="built_in">getBalance</span>(root-&gt;right) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		root-&gt;right = <span class="built_in">rightRotate</span>(root-&gt;right);</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">leftRotate</span>(root);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -889,13 +808,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">42k</span>
+    <span title="站点总字数">43k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:16</span>
+    <span title="站点阅读时长">1:18</span>
   </span>
 </div>
 <div class="busuanzi-count">
