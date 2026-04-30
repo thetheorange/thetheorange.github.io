@@ -250,27 +250,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>简要来说，归并分治的思路就是，在归并排序的基础上，统计答案。</p>
-<p>具体而言，可以从以下步骤进行考虑：</p>
-<ol>
-<li>答案是否可以从左区间、右区间和左跨右区间得到。</li>
-<li>排序是否对寻找答案有利。</li>
-</ol>
-<h2 id="例题分析"><a href="#例题分析" class="headerlink" title="例题分析"></a>例题分析</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-pairs/description/">翻转对</a></p>
-<blockquote>
-<p>给定一个数组 nums ，如果 <code>i &lt; j</code> 且 <code>nums[i] &gt; 2*nums[j]</code> 我们就将 (i, j) 称作一个重要翻转对。</p>
-<p>你需要返回给定数组中的重要翻转对的数量。</p>
-</blockquote>
-<p>依题意，实际为找满足<code>nums[左] &gt; 2*nums[右]</code>的个数。</p>
-<p>考虑暴力方法，对于每个坐标，依次向右遍历，寻找是否满足<code>nums[i] &gt; 2*nums[j]</code>的坐标，同时进行计数。显然，暴力解的时间复杂度是<code>O(n^2)</code>的。</p>
-<p>尝试使用归并分治的思想进行求解，注意到，如果取中点<code>mid</code>，答案可以从左区间、右区间和左跨右区间得到。接下来，考虑第二点，<em>排序是否对寻找答案有利？</em>对于两个已经排好序的数组而言，可以分别看成左边元素的集合和右边元素的集合，对于<em>单个集合</em>中的元素而言，此时坐标顺序已<strong>不重要</strong>，<em>因为在下游的递归中，我们已经得到了那部分的结果</em>。此时，我们可以使用滑动窗口的思想，即一次遍历，寻找答案。设定两个指针，<code>i</code>和<code>j</code>，分别在左部分和右部分中迭代，满足条件<code>nums[左] &gt; 2*nums[右]</code>时，<code>j</code>向右边遍历，直到越界。因为对于左部分，顺序是按从小到大排序的，即是说，*左部分[l, mid]<em>的元素如果在</em>右部分[mid+1, r]*有三个元素满足，对于左部分的下一个元素而言，它至少有三个元素满足。由此，我们可以用如下代码，统计答案。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = l, j = mid<span class="number">+1</span>; i &lt;= mid; ++i) &#123;</span><br><span class="line">    <span class="keyword">while</span> (j &lt;= r &amp;&amp; <span class="number">1LL</span> * nums[i] &gt; <span class="number">1LL</span> * nums[j] &lt;&lt; <span class="number">1</span>) &#123;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    ans += j - mid - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这道题的整体代码则如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> help[<span class="number">50000</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">merge</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> l, <span class="type">int</span> mid, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 统计过程</span></span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = l, j = mid<span class="number">+1</span>; i &lt;= mid; ++i) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &lt;= r &amp;&amp; <span class="number">1LL</span> * nums[i] &gt; <span class="number">1LL</span> * nums[j] &lt;&lt; <span class="number">1</span>) &#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans += j - mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 归并排序过程</span></span><br><span class="line">        <span class="type">int</span> i = l, a = l, b = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (a &lt;= mid &amp;&amp; b &lt;= r) &#123;</span><br><span class="line">            help[i++] = nums[a] &lt;= nums[b] ? nums[a++] : nums[b++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (a &lt;= mid) &#123;</span><br><span class="line">            help[i++] = nums[a++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (b &lt;= r) &#123;</span><br><span class="line">            help[i++] = nums[b++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = l; j &lt;= r; ++j) &#123;</span><br><span class="line">            nums[j] = help[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">mergeSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> mid = l + (r - l) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">mergeSort</span>(nums, l, mid) + <span class="built_in">mergeSort</span>(nums, mid<span class="number">+1</span>, r) + <span class="built_in">merge</span>(nums, l, mid, r);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">reversePairs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">mergeSort</span>(nums, <span class="number">0</span>, n<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p>一般情况下，归并分治的时间复杂度和归并排序一致，为<code>O(n*log n)</code></p>
-
+          <div class="post-preview">思路简要来说，归并分治的思路就是，在归并排序的基础上，统计答案。 具体而言，可以从以下步骤进行考虑： 答案是否可以从左区间、右区间和左跨右区间得到。 排序是否对寻找答案有利。 例题分析翻转对 给定一个数组 nums ，如果 i &lt; j 且 nums[i] &gt; 2*nums[j] 我们就将 (i, j) 称作一个重要翻转对。 你需要返回给定数组中的...</div>
+        <!--noindex-->
+        <div class="post-button">
+          <a class="btn" href="/2024/11/24/%E5%BD%92%E5%B9%B6%E5%88%86%E6%B2%BB/" rel="contents">
+            阅读全文 &raquo;
+          </a>
+        </div>
+        <!--/noindex-->
       
     </div>
 
@@ -363,13 +350,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>对一个数进行向上取整，对于<code>cpp</code>来说，可以使用库函数<code>ceil</code>进行取整。对于<strong>非负数来说</strong>，可以使用下面的方法进行方便的取整。公式如下：</p>
-<blockquote>
-<p>(a + b - 1) &#x2F; b</p>
-</blockquote>
-<p>证明思路如下图所示：</p>
-<p><img src="/../images/%E5%90%91%E4%B8%8A%E5%8F%96%E6%95%B4%E8%AF%81%E6%98%8E%E6%80%9D%E8%B7%AF.jpg" alt="向上取整的证明思路"></p>
-
+          <div class="post-preview">对一个数进行向上取整，对于cpp来说，可以使用库函数ceil进行取整。对于非负数来说，可以使用下面的方法进行方便的取整。公式如下： (a + b - 1) &#x2F; b 证明思路如下图所示：</div>
+        <!--noindex-->
+        <div class="post-button">
+          <a class="btn" href="/2024/11/24/%E5%90%91%E4%B8%8A%E5%8F%96%E6%95%B4%E7%9A%84%E6%96%B9%E6%B3%95/" rel="contents">
+            阅读全文 &raquo;
+          </a>
+        </div>
+        <!--/noindex-->
       
     </div>
 
@@ -462,27 +450,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><ol>
-<li>定义全局变量 <code>where</code></li>
-<li>递归函数f(i) 从i位置出发，遇到<code>字符串终止</code>或者<code>嵌套条件终止</code>就返回</li>
-<li>返回值是f(i) 负责的这一段结果</li>
-<li>f(i)在返回前更新<code>where</code>，目的是让上级函数通过<code>where</code>知道解析到了什么位置，进而继续</li>
-</ol>
-<h2 id="例题分析"><a href="#例题分析" class="headerlink" title="例题分析"></a>例题分析</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/decode-string/description/">394. 字符串解码</a></p>
-<blockquote>
-<p>给定一个经过编码的字符串，返回它解码后的字符串。</p>
-<p>编码规则为: k[encoded_string]，表示其中方括号内部的 encoded_string 正好重复 k 次。注意 k 保证为正整数。</p>
-<p>你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。</p>
-<p>此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 k ，例如不会出现像 3a 或 2[4] 的输入。</p>
-</blockquote>
-<p>字符串中一共会出现四种情况：1.数字 2.字母 3.左括号 4.右括号</p>
-<p>遇到数字和字母，我们可以记录下来。遇到左括号，说明我们进入到了一个嵌套，需要重复括号内的字符串，直到i扫描到右括号。</p>
-<p>这个时候，上游的函数就可以接收下游函数传递的嵌套结果，进而通过数字进行重复。</p>
-<p>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> where = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重复字符串</span></span><br><span class="line"><span class="function">string <span class="title">repeat</span><span class="params">(<span class="type">int</span> times, string s)</span> </span>&#123;</span><br><span class="line">	string res;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; times; ++i) &#123;</span><br><span class="line">		res += s;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">f</span><span class="params">(<span class="type">int</span> i, string s)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> d = <span class="number">0</span>; <span class="comment">// 用于记录数字</span></span><br><span class="line">	string path; <span class="comment">// 用于记录子串</span></span><br><span class="line">	<span class="keyword">while</span> (i &lt; s.<span class="built_in">size</span>() &amp;&amp; s[i] != <span class="string">&#x27;]&#x27;</span>) &#123;</span><br><span class="line">		<span class="comment">// 遇到数字</span></span><br><span class="line">		<span class="keyword">if</span> (s[i] &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; s[i] &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;</span><br><span class="line">			d = d * <span class="number">10</span> + (s[i++] - <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 遇到字母</span></span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (s[i] &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; s[i] &lt;= <span class="string">&#x27;z&#x27;</span>) &#123;</span><br><span class="line">			path.<span class="built_in">push_back</span>(s[i++]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 遇到左括号</span></span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			path += <span class="built_in">repeat</span>(d, <span class="built_in">f</span>(i + <span class="number">1</span>, s));</span><br><span class="line">			i = where + <span class="number">1</span>;</span><br><span class="line">			d = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 把当前的位置传给上游函数</span></span><br><span class="line">	where = i;</span><br><span class="line">	<span class="keyword">return</span> path;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>本文整理自左神的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1JP411p7KG/?spm_id_from=333.999.0.0&vd_source=1975c316afe56823772171b01ff0e77f">算法讲解039【必备】嵌套类问题的递归解题套路</a></p>
-
+          <div class="post-preview">基本步骤 定义全局变量 where 递归函数f(i) 从i位置出发，遇到字符串终止或者嵌套条件终止就返回 返回值是f(i) 负责的这一段结果 f(i)在返回前更新where，目的是让上级函数通过where知道解析到了什么位置，进而继续 例题分析394. 字符串解码 给定一个经过编码的字符串，返回它解码后的字符串。 编码规则为: k[encoded_strin...</div>
+        <!--noindex-->
+        <div class="post-button">
+          <a class="btn" href="/2024/11/06/%E5%B5%8C%E5%A5%97%E7%B1%BB%E9%80%92%E5%BD%92%E6%A8%A1%E7%89%88/" rel="contents">
+            阅读全文 &raquo;
+          </a>
+        </div>
+        <!--/noindex-->
       
     </div>
 
@@ -581,14 +556,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="模版"><a href="#模版" class="headerlink" title="模版"></a>模版</h2><p>cpp版本</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b == <span class="number">0</span> ? a : <span class="built_in">gcd</span>(b, a % b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>python版本</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a: <span class="built_in">int</span>, b: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    <span class="keyword">return</span> a <span class="keyword">if</span> b == <span class="number">0</span> <span class="keyword">else</span> gcd(b, a % b);</span><br></pre></td></tr></table></figure>
-
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>求最小公倍数</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">lcm</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a / <span class="built_in">gcd</span>(a, b) * b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <div class="post-preview">模版cpp版本 123int gcd(int a, int b) &#123; return b == 0 ? a : gcd(b, a % b);&#125; python版本 12def gcd(a: int, b: int) -&gt; int: return a if b == 0 else gcd(b, a % b); 补充求最小公倍数 123in...</div>
+        <!--noindex-->
+        <div class="post-button">
+          <a class="btn" href="/2024/10/30/%E6%B1%82%E6%9C%80%E5%B0%8F%E5%85%AC%E7%BA%A6%E6%95%B0/" rel="contents">
+            阅读全文 &raquo;
+          </a>
+        </div>
+        <!--/noindex-->
       
     </div>
 
@@ -672,14 +647,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/min-stack/description/">155 最小栈</a></p>
-<blockquote>
-<p>设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。</p>
-<p>实现 MinStack 类:</p>
-<p>   MinStack() 初始化堆栈对象。<br>   void push(int val) 将元素val推入堆栈。<br>   void pop() 删除堆栈顶部的元素。<br>   int top() 获取堆栈顶部的元素。<br>   int getMin() 获取堆栈中的最小元素。</p>
-</blockquote>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>使用两个栈，一个栈用于存储数据，一个栈用于存储当前的最小值，分别记作<em>a</em>, <em>b</em>。当<em>push</em>的<em>val</em>大于<em>b</em>中的栈顶元素时，就再次向<em>b</em>压入栈顶元素，否则压入<em>val</em>。</p>
-<h2 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MinStack</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    stack&lt;<span class="type">int</span>&gt; st;</span><br><span class="line">    stack&lt;<span class="type">int</span>&gt; mi;</span><br><span class="line">    <span class="built_in">MinStack</span>() &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">push</span><span class="params">(<span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        st.<span class="built_in">push</span>(val);</span><br><span class="line">        <span class="keyword">if</span> (mi.<span class="built_in">empty</span>() || val &lt; mi.<span class="built_in">top</span>()) &#123;</span><br><span class="line">            mi.<span class="built_in">push</span>(val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            mi.<span class="built_in">push</span>(mi.<span class="built_in">top</span>());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        st.<span class="built_in">pop</span>();</span><br><span class="line">        mi.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> st.<span class="built_in">top</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mi.<span class="built_in">top</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your MinStack object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * MinStack* obj = new MinStack();</span></span><br><span class="line"><span class="comment"> * obj-&gt;push(val);</span></span><br><span class="line"><span class="comment"> * obj-&gt;pop();</span></span><br><span class="line"><span class="comment"> * int param_3 = obj-&gt;top();</span></span><br><span class="line"><span class="comment"> * int param_4 = obj-&gt;getMin();</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+          <div class="post-preview">题目描述155 最小栈 设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。 实现 MinStack 类: MinStack() 初始化堆栈对象。 void push(int val) 将元素val推入堆栈。 void pop() 删除堆栈顶部的元素。 int top() 获取堆栈顶部的元素。 int getMin() 获取...</div>
+        <!--noindex-->
+        <div class="post-button">
+          <a class="btn" href="/2024/10/25/%E6%9C%80%E5%B0%8F%E6%A0%88/" rel="contents">
+            阅读全文 &raquo;
+          </a>
+        </div>
+        <!--/noindex-->
       
     </div>
 

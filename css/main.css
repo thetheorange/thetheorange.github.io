@@ -1282,7 +1282,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #ad3736;
+  background: #c85dda;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2662,6 +2662,35 @@ header.header {
   }
   .sidebar-active .footer-fixed {
     left: 320px;
+  }
+}
+.index.posts-expand .post-block {
+  border: 1px solid #eee;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.035);
+  margin-bottom: 32px;
+  padding: 28px 32px 18px;
+}
+.index.posts-expand .post-body {
+  margin-top: 18px;
+}
+.index.posts-expand .post-preview {
+  color: #555;
+  line-height: 1.8;
+}
+.index.posts-expand .post-preview p {
+  margin: 0 0 1em;
+}
+.index.posts-expand .post-footer .post-eof {
+  display: none;
+}
+@media (max-width: 767px) {
+  .index.posts-expand .post-block {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 22px 0 12px;
   }
 }
 .table-container {
